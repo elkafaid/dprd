@@ -124,8 +124,12 @@ export const Sidebar = () => {
     >
       <div className={cn("flex items-center p-4 border-b border-slate-800", isSidebarCollapsed ? "justify-center" : "justify-between")}>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-md bg-blue-600 flex items-center justify-center font-bold text-white shrink-0">
-            D
+          <div className="w-8 h-8 shrink-0">
+            <img
+              src="/logo.svg"
+              alt="Logo"
+              className="w-full h-full object-contain"
+            />
           </div>
           {!isSidebarCollapsed && (
              <h1 className="font-bold text-sm leading-tight tracking-tight">

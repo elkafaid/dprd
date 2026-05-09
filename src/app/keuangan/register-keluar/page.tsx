@@ -20,14 +20,14 @@ const formSchema = z.object({
   tanggal: z.string().min(1, "Tanggal is required"),
   uraian: z.string().min(1, "Uraian is required"),
   kategori: z.string().min(1, "Kategori is required"),
-  jumlah: z.coerce.number().min(1, "Jumlah must be greater than 0"),
+  jumlah: z.number().min(1, "Jumlah must be greater than 0"),
 });
 
 export default function RegisterKeluarPage() {
   const { isAuthenticated, registerKeluar, addRegisterKeluar } = useStore();
   const [open, setOpen] = useState(false);
 
-  const form = useForm({
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       tanggal: new Date().toISOString().split('T')[0],
@@ -37,7 +37,7 @@ export default function RegisterKeluarPage() {
     },
   });
 
-  function onSubmit(values: any) {
+  function onSubmit(values: z.infer<typeof formSchema>) {
     addRegisterKeluar(values);
     setOpen(false);
     form.reset();
@@ -76,10 +76,12 @@ export default function RegisterKeluarPage() {
         </div>
         {isAuthenticated && (
           <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger render={<Button className="bg-blue-600 hover:bg-blue-700">
+            <DialogTrigger render={<Button className="bg-blue-600 hover:bg-blue-700" />}>
+              <>
                 <Plus className="w-4 h-4 mr-2" />
                 Tambah Data
-              </Button>} />
+              </>
+            </DialogTrigger>
             <DialogContent>
               <DialogHeader>
                 <DialogTitle>Tambah Data Register Keluar</DialogTitle>
@@ -144,7 +146,7 @@ export default function RegisterKeluarPage() {
                       <FormItem>
                         <FormLabel>Jumlah (Rp)</FormLabel>
                         <FormControl>
-                          <Input type="number" placeholder="0" {...field} value={field.value as number} />
+                          <Input type="number" placeholder="0" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

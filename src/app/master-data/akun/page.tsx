@@ -1,47 +1,28 @@
 "use client";
 
 import { useStore } from "@/store/useStore";
+import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export default function MasterAkunPage() {
-  const { isAuthenticated, settings } = useStore();
+export default function AkunPage() {
+  const { isAuthenticated } = useStore();
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Master Data Akun</h1>
-          <p className="text-slate-500 text-sm mt-1">Daftar pengguna dengan akses admin sistem.</p>
+          <h2 className="text-2xl font-bold tracking-tight text-slate-900">Akun</h2>
+          <p className="text-slate-500 mt-1">Manage Akun data and records.</p>
         </div>
+        {isAuthenticated && (
+          <Button className="bg-blue-600 hover:bg-blue-700">
+            <Plus className="w-4 h-4 mr-2" />
+            Tambah Data
+          </Button>
+        )}
       </div>
-
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
-          <div className="p-0 overflow-x-auto">
-            <table className="w-full text-sm text-left">
-              <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200">
-                <tr>
-                  <th className="px-5 py-3 font-medium">Nama Admin</th>
-                  <th className="px-5 py-3 font-medium">Instansi</th>
-                  <th className="px-5 py-3 font-medium text-center">Status</th>
-                  <th className="px-5 py-3 font-medium text-right">Aksi</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200">
-                  <tr className="hover:bg-slate-50 transition-colors">
-                    <td className="px-5 py-3 text-slate-900 font-medium">{settings.adminName}</td>
-                    <td className="px-5 py-3 text-slate-600">{settings.instansiName}</td>
-                    <td className="px-5 py-3 text-center">
-                        <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Aktif</span>
-                    </td>
-                    <td className="px-5 py-3 text-right">
-                       {isAuthenticated && (
-                         <Button variant="ghost" size="sm" className="h-8 text-blue-600 hover:text-blue-700 hover:bg-blue-50">Edit</Button>
-                       )}
-                    </td>
-                  </tr>
-              </tbody>
-            </table>
-          </div>
+      <div className="bg-white rounded-md border p-8 text-center text-slate-500">
+        Data table for Akun will be implemented here.
       </div>
     </div>
   );

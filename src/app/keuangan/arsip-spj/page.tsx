@@ -48,6 +48,12 @@ export default function ArsipSPJPage() {
           <h2 className="text-2xl font-bold tracking-tight text-slate-900">Arsip SPJ</h2>
           <p className="text-slate-500 mt-1">Manage Surat Pertanggungjawaban documents.</p>
         </div>
+        {isAuthenticated && (
+          <Button className="bg-blue-600 hover:bg-blue-700">
+            <Plus className="w-4 h-4 mr-2" />
+            Tambah Data
+          </Button>
+        )}
       </div>
       <DataTable columns={columns} data={arsipSPJ} />
     </div>
