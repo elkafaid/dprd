@@ -4,7 +4,7 @@ import { useStore } from "@/store/useStore";
 import { Button } from "@/components/ui/button";
 
 export default function MasterAkunPage() {
-  const { settings } = useStore();
+  const { isAuthenticated, settings } = useStore();
 
   return (
     <div className="space-y-6">
@@ -34,7 +34,9 @@ export default function MasterAkunPage() {
                         <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Aktif</span>
                     </td>
                     <td className="px-5 py-3 text-right">
-                       <Button variant="ghost" size="sm" className="h-8 text-blue-600 hover:text-blue-700 hover:bg-blue-50">Edit</Button>
+                       {isAuthenticated && (
+                         <Button variant="ghost" size="sm" className="h-8 text-blue-600 hover:text-blue-700 hover:bg-blue-50">Edit</Button>
+                       )}
                     </td>
                   </tr>
               </tbody>

@@ -13,7 +13,7 @@ import { PegawaiForm } from "@/components/forms/PegawaiForm";
 import { Plus, Edit, Trash2 } from "lucide-react";
 
 export default function MasterPegawaiPage() {
-  const { pegawai, addPegawai, updatePegawai, deletePegawai } = useStore();
+  const { isAuthenticated, pegawai, addPegawai, updatePegawai, deletePegawai } = useStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingData, setEditingData] = useState<any>(null);
 
@@ -49,10 +49,12 @@ export default function MasterPegawaiPage() {
           <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Data Pegawai / Anggota</h1>
           <p className="text-slate-500 text-sm mt-1">Kelola data seluruh pegawai dan anggota dewan.</p>
         </div>
-        <Button onClick={handleOpenAdd} className="gap-2">
-          <Plus className="w-4 h-4" />
-          Tambah Pegawai
-        </Button>
+        {isAuthenticated && (
+          <Button onClick={handleOpenAdd} className="bg-blue-600 hover:bg-blue-700 gap-2">
+            <Plus className="w-4 h-4" />
+            Tambah Pegawai
+          </Button>
+        )}
       </div>
 
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
@@ -73,14 +75,16 @@ export default function MasterPegawaiPage() {
                   <td className="px-5 py-3 text-slate-600">{item.nip}</td>
                   <td className="px-5 py-3 text-slate-600">{item.jabatan}</td>
                   <td className="px-5 py-3 text-right">
-                    <div className="flex items-center justify-end gap-2">
-                      <Button variant="ghost" size="sm" onClick={() => handleOpenEdit(item)} className="h-8 w-8 p-0 text-blue-600 hover:text-blue-700 hover:bg-blue-50">
-                        <Edit className="w-4 h-4" />
-                      </Button>
-                      <Button variant="ghost" size="sm" onClick={() => handleDelete(item.id)} className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50">
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
-                    </div>
+                    {isAuthenticated && (
+                      <div className="flex items-center justify-end gap-2">
+                        <Button variant="ghost" size="sm" onClick={() => handleOpenEdit(item)} className="h-8 w-8 p-0 text-blue-600 hover:text-blue-700 hover:bg-blue-50">
+                          <Edit className="w-4 h-4" />
+                        </Button>
+                        <Button variant="ghost" size="sm" onClick={() => handleDelete(item.id)} className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50">
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    )}
                   </td>
                 </tr>
               ))}

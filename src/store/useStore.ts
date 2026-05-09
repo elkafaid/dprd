@@ -15,6 +15,7 @@ export type RegisterKeluar = {
   tanggal: string;
   uraian: string;
   jumlah: number;
+  kategori: string;
 };
 
 export type ArsipSPJ = {
@@ -38,6 +39,12 @@ export type JenisAnggaran = {
   id: string;
   nama: string;
   keterangan: string;
+  alokasi: number;
+};
+
+export type User = {
+  username: string;
+  name: string;
 };
 
 export type AppState = {
@@ -46,10 +53,16 @@ export type AppState = {
   arsipSPJ: ArsipSPJ[];
   pegawai: Pegawai[];
   jenisAnggaran: JenisAnggaran[];
+  isAuthenticated: boolean;
+  user: User | null;
+  isSidebarCollapsed: boolean;
   settings: {
     instansiName: string;
     adminName: string;
   };
+  login: (user: User) => void;
+  logout: () => void;
+  toggleSidebar: () => void;
   addRegisterMasuk: (data: Omit<RegisterMasuk, 'id'>) => void;
   addRegisterKeluar: (data: Omit<RegisterKeluar, 'id'>) => void;
   addArsipSPJ: (data: Omit<ArsipSPJ, 'id'>) => void;
@@ -69,8 +82,8 @@ const initialRegisterMasuk: RegisterMasuk[] = [
 ];
 
 const initialRegisterKeluar: RegisterKeluar[] = [
-  { id: '1', tanggal: '2023-10-02', uraian: 'Biaya Rapat Paripurna', jumlah: 25000000 },
-  { id: '2', tanggal: '2023-10-10', uraian: 'Perawatan Gedung', jumlah: 50000000 },
+  { id: '1', tanggal: '2023-10-02', uraian: 'Biaya Rapat Paripurna', jumlah: 25000000, kategori: 'Makan & Minum' },
+  { id: '2', tanggal: '2023-10-10', uraian: 'Perawatan Gedung', jumlah: 50000000, kategori: 'Pemeliharaan' },
 ];
 
 const initialArsipSPJ: ArsipSPJ[] = [
@@ -84,9 +97,9 @@ const initialPegawai: Pegawai[] = [
 ];
 
 const initialJenisAnggaran: JenisAnggaran[] = [
-  { id: '1', nama: 'Biaya Rapat', keterangan: 'Anggaran untuk konsumsi dan akomodasi rapat' },
-  { id: '2', nama: 'Perawatan', keterangan: 'Biaya perawatan gedung dan fasilitas' },
-  { id: '3', nama: 'Operasional', keterangan: 'Biaya operasional sehari-hari' },
+  { id: '1', nama: 'Biaya Rapat', keterangan: 'Anggaran untuk konsumsi dan akomodasi rapat', alokasi: 100000000 },
+  { id: '2', nama: 'Perawatan', keterangan: 'Biaya perawatan gedung dan fasilitas', alokasi: 200000000 },
+  { id: '3', nama: 'Operasional', keterangan: 'Biaya operasional sehari-hari', alokasi: 500000000 },
 ];
 
 export const useStore = create<AppState>()(
@@ -97,10 +110,16 @@ export const useStore = create<AppState>()(
       arsipSPJ: initialArsipSPJ,
       pegawai: initialPegawai,
       jenisAnggaran: initialJenisAnggaran,
+      isAuthenticated: false,
+      user: null,
+      isSidebarCollapsed: false,
       settings: {
         instansiName: 'DPRD KAB. MOJOKERTO',
         adminName: 'Admin Keuangan',
       },
+      login: (user) => set({ isAuthenticated: true, user }),
+      logout: () => set({ isAuthenticated: false, user: null }),
+      toggleSidebar: () => set((state) => ({ isSidebarCollapsed: !state.isSidebarCollapsed })),
       addRegisterMasuk: (data) =>
         set((state) => ({
           registerMasuk: [
