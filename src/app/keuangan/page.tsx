@@ -39,17 +39,13 @@ export default function KeuanganDashboard() {
   const [isKeluarOpen, setIsKeluarOpen] = useState(false);
   const [isSPJOpen, setIsSPJOpen] = useState(false);
 
-  const { jenisAnggaran } = useStore();
-
   // Calculations
-  const totalAnggaranMaster = jenisAnggaran.reduce((sum, item) => sum + (item.totalAnggaran || 0), 0);
   const totalMasuk = registerMasuk.reduce((sum, item) => sum + item.jumlah, 0);
   const totalKeluar = registerKeluar.reduce((sum, item) => sum + item.jumlah, 0);
-  const sisaAnggaran = totalAnggaranMaster + totalMasuk - totalKeluar;
+  const sisaAnggaran = totalMasuk - totalKeluar;
   const totalArsip = arsipSPJ.length;
 
-  const totalPagu = totalAnggaranMaster + totalMasuk;
-  const budgetUsagePercent = totalPagu > 0 ? (totalKeluar / totalPagu) * 100 : 0;
+  const budgetUsagePercent = totalMasuk > 0 ? (totalKeluar / totalMasuk) * 100 : 0;
 
   // Chart Data based on actual data
   const aggregatedKeluar = registerKeluar.reduce((acc, curr) => {
@@ -342,7 +338,7 @@ export default function KeuanganDashboard() {
             </div>
             <div className="text-right">
               <p className="text-slate-500">Total Pagu</p>
-              <p className="font-medium text-slate-900">{formatRupiah(totalPagu)}</p>
+              <p className="font-medium text-slate-900">{formatRupiah(totalMasuk)}</p>
             </div>
           </div>
         </div>
