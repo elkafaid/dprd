@@ -37,10 +37,14 @@ export type Pegawai = {
 export type JenisAnggaran = {
   id: string;
   nama: string;
+  totalAnggaran: number;
   keterangan: string;
 };
 
 export type AppState = {
+  isAuthenticated: boolean;
+  login: () => void;
+  logout: () => void;
   registerMasuk: RegisterMasuk[];
   registerKeluar: RegisterKeluar[];
   arsipSPJ: ArsipSPJ[];
@@ -84,14 +88,17 @@ const initialPegawai: Pegawai[] = [
 ];
 
 const initialJenisAnggaran: JenisAnggaran[] = [
-  { id: '1', nama: 'Biaya Rapat', keterangan: 'Anggaran untuk konsumsi dan akomodasi rapat' },
-  { id: '2', nama: 'Perawatan', keterangan: 'Biaya perawatan gedung dan fasilitas' },
-  { id: '3', nama: 'Operasional', keterangan: 'Biaya operasional sehari-hari' },
+  { id: '1', nama: 'Biaya Rapat', totalAnggaran: 100000000, keterangan: 'Anggaran untuk konsumsi dan akomodasi rapat' },
+  { id: '2', nama: 'Perawatan', totalAnggaran: 200000000, keterangan: 'Biaya perawatan gedung dan fasilitas' },
+  { id: '3', nama: 'Operasional', totalAnggaran: 150000000, keterangan: 'Biaya operasional sehari-hari' },
 ];
 
 export const useStore = create<AppState>()(
   persist(
     (set) => ({
+      isAuthenticated: false,
+      login: () => set({ isAuthenticated: true }),
+      logout: () => set({ isAuthenticated: false }),
       registerMasuk: initialRegisterMasuk,
       registerKeluar: initialRegisterKeluar,
       arsipSPJ: initialArsipSPJ,
