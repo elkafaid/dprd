@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className={`${inter.className} antialiased`}>
-        <DashboardLayout>{children}</DashboardLayout>
+        {children}
       </body>
     </html>
   );

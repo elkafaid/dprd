@@ -77,7 +77,7 @@ export const TopHeader = () => {
             <DropdownMenuItem>Profil</DropdownMenuItem>
             <DropdownMenuItem>Pengaturan</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-red-600">Keluar</DropdownMenuItem>
+            <DropdownMenuItem className="text-red-600" onClick={() => useStore.getState().logout()}>Keluar</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
