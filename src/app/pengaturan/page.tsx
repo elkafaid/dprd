@@ -28,7 +28,7 @@ const formSchema = z.object({
 });
 
 export default function PengaturanPage() {
-  const { settings, updateSettings } = useStore();
+  const { isAuthenticated, settings, updateSettings } = useStore();
   const [isSaved, setIsSaved] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -113,10 +113,12 @@ export default function PengaturanPage() {
                   </p>
                 )}
               </div>
-              <Button type="submit" className="gap-2">
-                <Save className="w-4 h-4" />
-                Simpan Perubahan
-              </Button>
+              {isAuthenticated && (
+                <Button type="submit" className="bg-blue-600 hover:bg-blue-700 gap-2">
+                  <Save className="w-4 h-4" />
+                  Simpan Perubahan
+                </Button>
+              )}
             </div>
           </form>
         </Form>
