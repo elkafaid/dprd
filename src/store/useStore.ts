@@ -25,7 +25,7 @@ export type ArsipSPJ = {
   pegawai: string;
   tanggal: string;
   totalBiaya: number;
-  status: 'Disetujui' | 'Menunggu Verifikasi' | 'Ditolak';
+  status: 'Draft' | 'Menunggu Verifikasi' | 'Disetujui';
 };
 
 export type Pegawai = {
@@ -33,6 +33,7 @@ export type Pegawai = {
   nama: string;
   nip: string;
   jabatan: string;
+  fraksi: string;
 };
 
 export type JenisAnggaran = {
@@ -47,33 +48,104 @@ export type User = {
   name: string;
 };
 
+// Tata Usaha
+export type SuratMasuk = {
+  id: string;
+  nomorSurat: string;
+  tanggal: string;
+  pengirim: string;
+  perihal: string;
+  status: 'Belum Dibaca' | 'Diproses' | 'Selesai';
+};
+
+export type SuratKeluar = {
+  id: string;
+  nomorSurat: string;
+  tanggal: string;
+  penerima: string;
+  perihal: string;
+};
+
+export type Agenda = {
+  id: string;
+  tanggalWaktu: string;
+  namaKegiatan: string;
+  lokasi: string;
+  keterangan: string;
+};
+
+// Aspirasi
+export type Pengaduan = {
+  id: string;
+  tanggal: string;
+  namaPelapor: string;
+  kategori: string;
+  masalah: string;
+  status: 'Diterima' | 'Diproses' | 'Selesai';
+};
+
+export type Pokir = {
+  id: string;
+  pengusul: string;
+  dapil: string;
+  programUsulan: string;
+  estimasiAnggaran: number;
+};
+
 export type AppState = {
   registerMasuk: RegisterMasuk[];
   registerKeluar: RegisterKeluar[];
   arsipSPJ: ArsipSPJ[];
   pegawai: Pegawai[];
   jenisAnggaran: JenisAnggaran[];
+
+  // New States
+  suratMasuk: SuratMasuk[];
+  suratKeluar: SuratKeluar[];
+  agenda: Agenda[];
+  pengaduan: Pengaduan[];
+  pokir: Pokir[];
+
   isAuthenticated: boolean;
   user: User | null;
   isSidebarCollapsed: boolean;
   settings: {
     instansiName: string;
     adminName: string;
+    systemTahun: string;
   };
+
   login: (user: User) => void;
   logout: () => void;
   toggleSidebar: () => void;
+
+  // Master Actions
   addRegisterMasuk: (data: Omit<RegisterMasuk, 'id'>) => void;
   addRegisterKeluar: (data: Omit<RegisterKeluar, 'id'>) => void;
   addArsipSPJ: (data: Omit<ArsipSPJ, 'id'>) => void;
+  updateSPJStatus: (id: string, status: ArsipSPJ['status']) => void;
+  deleteSPJ: (id: string) => void;
+
   addPegawai: (data: Omit<Pegawai, 'id'>) => void;
   updatePegawai: (id: string, data: Partial<Pegawai>) => void;
   deletePegawai: (id: string) => void;
+
   addJenisAnggaran: (data: Omit<JenisAnggaran, 'id'>) => void;
   updateJenisAnggaran: (id: string, data: Partial<JenisAnggaran>) => void;
   deleteJenisAnggaran: (id: string) => void;
+
+  // TU Actions
+  addSuratMasuk: (data: Omit<SuratMasuk, 'id'>) => void;
+  updateSuratMasukStatus: (id: string, status: SuratMasuk['status']) => void;
+  addSuratKeluar: (data: Omit<SuratKeluar, 'id' | 'nomorSurat'>) => void;
+  addAgenda: (data: Omit<Agenda, 'id'>) => void;
+
+  // Aspirasi Actions
+  addPengaduan: (data: Omit<Pengaduan, 'id'>) => void;
+  updatePengaduanStatus: (id: string, status: Pengaduan['status']) => void;
+  addPokir: (data: Omit<Pokir, 'id'>) => void;
+
   updateSettings: (settings: AppState['settings']) => void;
-  deleteSPJ: (id: string) => void;
 };
 
 const initialRegisterMasuk: RegisterMasuk[] = [
@@ -92,14 +164,35 @@ const initialArsipSPJ: ArsipSPJ[] = [
 ];
 
 const initialPegawai: Pegawai[] = [
-  { id: '1', nama: 'Budi Santoso', nip: '198001012005011001', jabatan: 'Ketua DPRD' },
-  { id: '2', nama: 'Siti Aminah', nip: '198502022010022002', jabatan: 'Wakil Ketua DPRD' },
+  { id: '1', nama: 'Budi Santoso', nip: '198001012005011001', jabatan: 'Ketua DPRD', fraksi: 'Partai X' },
+  { id: '2', nama: 'Siti Aminah', nip: '198502022010022002', jabatan: 'Wakil Ketua DPRD', fraksi: 'Partai Y' },
 ];
 
 const initialJenisAnggaran: JenisAnggaran[] = [
   { id: '1', nama: 'Biaya Rapat', keterangan: 'Anggaran untuk konsumsi dan akomodasi rapat', alokasi: 100000000 },
   { id: '2', nama: 'Perawatan', keterangan: 'Biaya perawatan gedung dan fasilitas', alokasi: 200000000 },
   { id: '3', nama: 'Operasional', keterangan: 'Biaya operasional sehari-hari', alokasi: 500000000 },
+];
+
+// Mock Data
+const initialSuratMasuk: SuratMasuk[] = [
+  { id: '1', nomorSurat: 'SM-2023/10/01', tanggal: '2023-10-01', pengirim: 'Gubernur', perihal: 'Undangan Rapat', status: 'Belum Dibaca' }
+];
+
+const initialSuratKeluar: SuratKeluar[] = [
+  { id: '1', nomorSurat: 'SK-2023/10/01', tanggal: '2023-10-02', penerima: 'Dinas PU', perihal: 'Permohonan Data' }
+];
+
+const initialAgenda: Agenda[] = [
+  { id: '1', tanggalWaktu: '2023-10-10 09:00', namaKegiatan: 'Rapat Paripurna', lokasi: 'Ruang Rapat Utama', keterangan: 'Pembahasan APBD' }
+];
+
+const initialPengaduan: Pengaduan[] = [
+  { id: '1', tanggal: '2023-10-05', namaPelapor: 'Warga A', kategori: 'Infrastruktur', masalah: 'Jalan Rusak', status: 'Diterima' }
+];
+
+const initialPokir: Pokir[] = [
+  { id: '1', pengusul: 'Budi Santoso', dapil: 'Dapil 1', programUsulan: 'Perbaikan Jalan Desa', estimasiAnggaran: 200000000 }
 ];
 
 export const useStore = create<AppState>()(
@@ -110,72 +203,50 @@ export const useStore = create<AppState>()(
       arsipSPJ: initialArsipSPJ,
       pegawai: initialPegawai,
       jenisAnggaran: initialJenisAnggaran,
+
+      suratMasuk: initialSuratMasuk,
+      suratKeluar: initialSuratKeluar,
+      agenda: initialAgenda,
+      pengaduan: initialPengaduan,
+      pokir: initialPokir,
+
       isAuthenticated: false,
       user: null,
       isSidebarCollapsed: false,
       settings: {
         instansiName: 'DPRD KAB. MOJOKERTO',
         adminName: 'Admin Keuangan',
+        systemTahun: '2023',
       },
+
       login: (user) => set({ isAuthenticated: true, user }),
       logout: () => set({ isAuthenticated: false, user: null }),
       toggleSidebar: () => set((state) => ({ isSidebarCollapsed: !state.isSidebarCollapsed })),
-      addRegisterMasuk: (data) =>
-        set((state) => ({
-          registerMasuk: [
-            ...state.registerMasuk,
-            { ...data, id: Math.random().toString(36).substr(2, 9) },
-          ],
-        })),
-      addRegisterKeluar: (data) =>
-        set((state) => ({
-          registerKeluar: [
-            ...state.registerKeluar,
-            { ...data, id: Math.random().toString(36).substr(2, 9) },
-          ],
-        })),
-      addArsipSPJ: (data) =>
-        set((state) => ({
-          arsipSPJ: [
-            ...state.arsipSPJ,
-            { ...data, id: Math.random().toString(36).substr(2, 9) },
-          ],
-        })),
-      addPegawai: (data) =>
-        set((state) => ({
-          pegawai: [
-            ...state.pegawai,
-            { ...data, id: Math.random().toString(36).substr(2, 9) },
-          ],
-        })),
-      updatePegawai: (id, data) =>
-        set((state) => ({
-          pegawai: state.pegawai.map((p) => (p.id === id ? { ...p, ...data } : p)),
-        })),
-      deletePegawai: (id) =>
-        set((state) => ({
-          pegawai: state.pegawai.filter((p) => p.id !== id),
-        })),
-      addJenisAnggaran: (data) =>
-        set((state) => ({
-          jenisAnggaran: [
-            ...state.jenisAnggaran,
-            { ...data, id: Math.random().toString(36).substr(2, 9) },
-          ],
-        })),
-      updateJenisAnggaran: (id, data) =>
-        set((state) => ({
-          jenisAnggaran: state.jenisAnggaran.map((j) => (j.id === id ? { ...j, ...data } : j)),
-        })),
-      deleteJenisAnggaran: (id) =>
-        set((state) => ({
-          jenisAnggaran: state.jenisAnggaran.filter((j) => j.id !== id),
-        })),
+
+      addRegisterMasuk: (data) => set((state) => ({ registerMasuk: [...state.registerMasuk, { ...data, id: Math.random().toString(36).substr(2, 9) }] })),
+      addRegisterKeluar: (data) => set((state) => ({ registerKeluar: [...state.registerKeluar, { ...data, id: Math.random().toString(36).substr(2, 9) }] })),
+      addArsipSPJ: (data) => set((state) => ({ arsipSPJ: [...state.arsipSPJ, { ...data, id: Math.random().toString(36).substr(2, 9) }] })),
+      updateSPJStatus: (id, status) => set((state) => ({ arsipSPJ: state.arsipSPJ.map((s) => s.id === id ? { ...s, status } : s) })),
+      deleteSPJ: (id) => set((state) => ({ arsipSPJ: state.arsipSPJ.filter((s) => s.id !== id) })),
+
+      addPegawai: (data) => set((state) => ({ pegawai: [...state.pegawai, { ...data, id: Math.random().toString(36).substr(2, 9) }] })),
+      updatePegawai: (id, data) => set((state) => ({ pegawai: state.pegawai.map((p) => p.id === id ? { ...p, ...data } : p) })),
+      deletePegawai: (id) => set((state) => ({ pegawai: state.pegawai.filter((p) => p.id !== id) })),
+
+      addJenisAnggaran: (data) => set((state) => ({ jenisAnggaran: [...state.jenisAnggaran, { ...data, id: Math.random().toString(36).substr(2, 9) }] })),
+      updateJenisAnggaran: (id, data) => set((state) => ({ jenisAnggaran: state.jenisAnggaran.map((j) => j.id === id ? { ...j, ...data } : j) })),
+      deleteJenisAnggaran: (id) => set((state) => ({ jenisAnggaran: state.jenisAnggaran.filter((j) => j.id !== id) })),
+
+      addSuratMasuk: (data) => set((state) => ({ suratMasuk: [...state.suratMasuk, { ...data, id: Math.random().toString(36).substr(2, 9) }] })),
+      updateSuratMasukStatus: (id, status) => set((state) => ({ suratMasuk: state.suratMasuk.map((s) => s.id === id ? { ...s, status } : s) })),
+      addSuratKeluar: (data) => set((state) => ({ suratKeluar: [...state.suratKeluar, { ...data, id: Math.random().toString(36).substr(2, 9), nomorSurat: `SK-${new Date().getFullYear()}/${Math.floor(Math.random()*1000)}` }] })),
+      addAgenda: (data) => set((state) => ({ agenda: [...state.agenda, { ...data, id: Math.random().toString(36).substr(2, 9) }] })),
+
+      addPengaduan: (data) => set((state) => ({ pengaduan: [...state.pengaduan, { ...data, id: Math.random().toString(36).substr(2, 9) }] })),
+      updatePengaduanStatus: (id, status) => set((state) => ({ pengaduan: state.pengaduan.map((p) => p.id === id ? { ...p, status } : p) })),
+      addPokir: (data) => set((state) => ({ pokir: [...state.pokir, { ...data, id: Math.random().toString(36).substr(2, 9) }] })),
+
       updateSettings: (newSettings) => set({ settings: newSettings }),
-      deleteSPJ: (id) =>
-        set((state) => ({
-          arsipSPJ: state.arsipSPJ.filter((spj) => spj.id !== id),
-        })),
     }),
     {
       name: 'dprd-dashboard-storage',

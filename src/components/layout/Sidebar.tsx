@@ -20,6 +20,15 @@ import {
   ChevronDown,
   PanelLeftClose,
   PanelLeftOpen,
+  Mail,
+  CalendarDays,
+  MessageSquare,
+  ClipboardList,
+  Scale,
+  Car,
+  Building,
+  Gavel,
+  BookOpen
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -89,12 +98,12 @@ const SidebarGroup = ({
         )}
       >
         <div className="flex items-center gap-3">
-          {Icon && <Icon className="w-5 h-5" />}
+          {Icon && <Icon className="w-5 h-5 shrink-0" />}
           <span className="truncate">{title}</span>
         </div>
         <ChevronDown
           className={cn(
-            "w-4 h-4 transition-transform duration-200",
+            "w-4 h-4 shrink-0 transition-transform duration-200",
             expanded ? "rotate-180" : ""
           )}
         />
@@ -102,7 +111,7 @@ const SidebarGroup = ({
       <div
         className={cn(
           "overflow-hidden transition-all duration-200",
-          expanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          expanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
         )}
       >
         <div className="pl-6 pr-2 py-1 space-y-1">{children}</div>
@@ -122,7 +131,7 @@ export const Sidebar = () => {
         isSidebarCollapsed ? "w-[80px]" : "w-[260px]"
       )}
     >
-      <div className={cn("flex items-center p-4 border-b border-slate-800", isSidebarCollapsed ? "justify-center" : "justify-between")}>
+      <div className={cn("flex items-center p-4 border-b border-slate-800 h-16 shrink-0", isSidebarCollapsed ? "justify-center" : "justify-between")}>
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-md bg-blue-600 flex items-center justify-center font-bold text-white shrink-0">
             D
@@ -135,7 +144,10 @@ export const Sidebar = () => {
         </div>
       </div>
 
-      <div className="p-4 flex-1 overflow-y-auto">
+      <div className="p-4 flex-1 overflow-y-auto [flex-1 overflow-y-auto::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+
+
         <div className="mb-6">
           {!isSidebarCollapsed && (
             <p className="px-4 text-xs font-semibold text-slate-500 mb-2 uppercase tracking-wider">
@@ -152,6 +164,59 @@ export const Sidebar = () => {
         </div>
 
         <div className="space-y-1 mb-6">
+          <SidebarGroup
+            title="TATA USAHA"
+            icon={Briefcase}
+            defaultExpanded={pathname.startsWith("/tata-usaha")}
+            activeGroup={pathname.startsWith("/tata-usaha")}
+            isCollapsed={isSidebarCollapsed}
+          >
+            <SidebarItem
+              icon={Mail}
+              label="Surat Masuk"
+              href="/tata-usaha/surat-masuk"
+              active={pathname === "/tata-usaha/surat-masuk"}
+              isCollapsed={isSidebarCollapsed}
+            />
+            <SidebarItem
+              icon={Mail}
+              label="Surat Keluar"
+              href="/tata-usaha/surat-keluar"
+              active={pathname === "/tata-usaha/surat-keluar"}
+              isCollapsed={isSidebarCollapsed}
+            />
+            <SidebarItem
+              icon={CalendarDays}
+              label="Agenda"
+              href="/tata-usaha/agenda"
+              active={pathname === "/tata-usaha/agenda"}
+              isCollapsed={isSidebarCollapsed}
+            />
+          </SidebarGroup>
+
+          <SidebarGroup
+            title="ASPIRASI & POKIR"
+            icon={MessageSquare}
+            defaultExpanded={pathname.startsWith("/aspirasi")}
+            activeGroup={pathname.startsWith("/aspirasi")}
+            isCollapsed={isSidebarCollapsed}
+          >
+            <SidebarItem
+              icon={ClipboardList}
+              label="Pengaduan Masyarakat"
+              href="/aspirasi/pengaduan"
+              active={pathname === "/aspirasi/pengaduan"}
+              isCollapsed={isSidebarCollapsed}
+            />
+            <SidebarItem
+              icon={BookOpen}
+              label="Pokok-pokok Pikiran"
+              href="/aspirasi/pokir"
+              active={pathname === "/aspirasi/pokir"}
+              isCollapsed={isSidebarCollapsed}
+            />
+          </SidebarGroup>
+
           <SidebarGroup
             title="KEUANGAN"
             icon={Wallet}
@@ -185,6 +250,52 @@ export const Sidebar = () => {
               label="Dashboard Keuangan"
               href="/keuangan/dashboard-keuangan"
               active={pathname === "/keuangan/dashboard-keuangan"}
+              isCollapsed={isSidebarCollapsed}
+            />
+          </SidebarGroup>
+
+          <SidebarGroup
+            title="LEGISLASI"
+            icon={Scale}
+            defaultExpanded={pathname.startsWith("/legislasi")}
+            activeGroup={pathname.startsWith("/legislasi")}
+            isCollapsed={isSidebarCollapsed}
+          >
+            <SidebarItem
+              icon={Gavel}
+              label="Draft Raperda"
+              href="/legislasi/draft-raperda"
+              active={pathname === "/legislasi/draft-raperda"}
+              isCollapsed={isSidebarCollapsed}
+            />
+            <SidebarItem
+              icon={FileText}
+              label="Produk Hukum"
+              href="/legislasi/produk-hukum"
+              active={pathname === "/legislasi/produk-hukum"}
+              isCollapsed={isSidebarCollapsed}
+            />
+          </SidebarGroup>
+
+          <SidebarGroup
+            title="INVENTARIS"
+            icon={Archive}
+            defaultExpanded={pathname.startsWith("/inventaris")}
+            activeGroup={pathname.startsWith("/inventaris")}
+            isCollapsed={isSidebarCollapsed}
+          >
+            <SidebarItem
+              icon={Car}
+              label="Kendaraan Dinas"
+              href="/inventaris/kendaraan-dinas"
+              active={pathname === "/inventaris/kendaraan-dinas"}
+              isCollapsed={isSidebarCollapsed}
+            />
+            <SidebarItem
+              icon={Building}
+              label="Aset & Gedung"
+              href="/inventaris/aset-gedung"
+              active={pathname === "/inventaris/aset-gedung"}
               isCollapsed={isSidebarCollapsed}
             />
           </SidebarGroup>
@@ -254,7 +365,7 @@ export const Sidebar = () => {
         </div>
       </div>
 
-      <div className="p-4 border-t border-slate-800 space-y-2">
+      <div className="p-4 border-t border-slate-800 space-y-2 shrink-0">
         {isAuthenticated ? (
           <button
             onClick={logout}
