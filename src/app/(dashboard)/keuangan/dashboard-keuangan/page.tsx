@@ -136,7 +136,7 @@ export default function DashboardKeuanganPage() {
              <span className="font-medium text-slate-900">Register Masuk</span>
              <Input placeholder="Cari..." className="w-64 h-8 text-sm" value={searchMasuk} onChange={(e) => setSearchMasuk(e.target.value)} />
            </div>
-           <div className="p-4 overflow-x-auto">
+           <div className="p-4 overflow-x-auto w-full">
              <table className="w-full text-sm text-left">
                 <thead className="text-xs text-slate-500 uppercase bg-slate-50">
                   <tr>
@@ -175,7 +175,7 @@ export default function DashboardKeuanganPage() {
              <span className="font-medium text-slate-900">Register Keluar</span>
              <Input placeholder="Cari..." className="w-64 h-8 text-sm" value={searchKeluar} onChange={(e) => setSearchKeluar(e.target.value)} />
            </div>
-           <div className="p-4 overflow-x-auto">
+           <div className="p-4 overflow-x-auto w-full">
              <table className="w-full text-sm text-left">
                 <thead className="text-xs text-slate-500 uppercase bg-slate-50">
                   <tr>
@@ -214,7 +214,7 @@ export default function DashboardKeuanganPage() {
              <span className="font-medium text-slate-900">Arsip SPJ</span>
              <Input placeholder="Cari..." className="w-64 h-8 text-sm" value={searchSPJ} onChange={(e) => setSearchSPJ(e.target.value)} />
            </div>
-           <div className="p-4 overflow-x-auto">
+           <div className="p-4 overflow-x-auto w-full">
              <table className="w-full text-sm text-left">
                 <thead className="text-xs text-slate-500 uppercase bg-slate-50">
                   <tr>

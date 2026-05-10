@@ -86,7 +86,7 @@ export default function LaporanKeuanganPage() {
 
       <div className="bg-white rounded-md border shadow-sm overflow-hidden">
          <div className="px-4 py-3 bg-slate-50 border-b font-medium text-slate-900">Data Transaksi (Masuk & Keluar)</div>
-         <div className="p-4 overflow-x-auto">
+         <div className="p-4 overflow-x-auto w-full">
            <table className="w-full text-sm text-left">
               <thead className="text-xs text-slate-500 uppercase bg-slate-50">
                 <tr>

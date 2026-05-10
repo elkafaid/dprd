@@ -175,7 +175,7 @@ export default function KeuanganDashboard() {
             <h3 className="font-semibold text-slate-900">Register Masuk</h3>
             <Button variant="ghost" size="sm" className="text-blue-600 hover:text-blue-700" onClick={() => setIsMasukOpen(true)}>Lihat Semua</Button>
           </div>
-          <div className="p-0 overflow-x-auto">
+          <div className="p-0 overflow-x-auto w-full">
             <table className="w-full text-sm text-left">
               <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200">
                 <tr>
@@ -207,7 +207,7 @@ export default function KeuanganDashboard() {
             <h3 className="font-semibold text-slate-900">Register Keluar</h3>
             <Button variant="ghost" size="sm" className="text-blue-600 hover:text-blue-700" onClick={() => setIsKeluarOpen(true)}>Lihat Semua</Button>
           </div>
-          <div className="p-0 overflow-x-auto">
+          <div className="p-0 overflow-x-auto w-full">
             <table className="w-full text-sm text-left">
               <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200">
                 <tr>
@@ -254,7 +254,7 @@ export default function KeuanganDashboard() {
             </Button>
           </div>
         </div>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto w-full">
           <table className="w-full text-sm text-left">
             <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200">
               <tr>

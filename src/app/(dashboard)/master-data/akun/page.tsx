@@ -16,7 +16,7 @@ export default function MasterAkunPage() {
       </div>
 
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
-          <div className="p-0 overflow-x-auto">
+          <div className="p-0 overflow-x-auto w-full">
             <table className="w-full text-sm text-left">
               <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200">
                 <tr>
