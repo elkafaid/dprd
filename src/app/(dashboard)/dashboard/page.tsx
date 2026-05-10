@@ -2,7 +2,7 @@
 
 import { useStore } from "@/store/useStore";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Wallet, ArrowDownToLine, ArrowUpFromLine, PieChart as PieChartIcon, Mail, MailOpen, FileText, ClipboardList, Building2, Trees } from "lucide-react";
+import { Wallet, ArrowDownToLine, ArrowUpFromLine, PieChart as PieChartIcon, Mail, MailOpen, FileText, ClipboardList, Building2, Trees, Database, MessageSquare } from "lucide-react";
 import {
   PieChart,
   Pie,
@@ -11,6 +11,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import Link from "next/link";
 
 export default function Dashboard() {
   const { jenisAnggaran, registerMasuk, registerKeluar, suratMasuk, suratKeluar, pengaduan } = useStore();
@@ -44,6 +45,34 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
+      {/* Mobile Quick Actions */}
+      <div className="md:hidden grid grid-cols-4 gap-2 mb-2">
+        <Link href="/tata-usaha/surat-masuk" className="flex flex-col items-center gap-2 p-3 bg-white rounded-xl shadow-sm border border-slate-100 hover:bg-slate-50 transition-colors">
+          <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+            <Mail className="w-5 h-5" />
+          </div>
+          <span className="text-[10px] font-medium text-slate-600 text-center leading-tight">Tata<br/>Usaha</span>
+        </Link>
+        <Link href="/aspirasi/pengaduan" className="flex flex-col items-center gap-2 p-3 bg-white rounded-xl shadow-sm border border-slate-100 hover:bg-slate-50 transition-colors">
+          <div className="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center text-amber-600">
+            <MessageSquare className="w-5 h-5" />
+          </div>
+          <span className="text-[10px] font-medium text-slate-600 text-center leading-tight">Aspirasi<br/>Rakyat</span>
+        </Link>
+        <Link href="/keuangan/dashboard-keuangan" className="flex flex-col items-center gap-2 p-3 bg-white rounded-xl shadow-sm border border-slate-100 hover:bg-slate-50 transition-colors">
+          <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
+            <Wallet className="w-5 h-5" />
+          </div>
+          <span className="text-[10px] font-medium text-slate-600 text-center leading-tight">Keuangan<br/>DPRD</span>
+        </Link>
+        <Link href="/master-data/pegawai" className="flex flex-col items-center gap-2 p-3 bg-white rounded-xl shadow-sm border border-slate-100 hover:bg-slate-50 transition-colors">
+          <div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600">
+            <Database className="w-5 h-5" />
+          </div>
+          <span className="text-[10px] font-medium text-slate-600 text-center leading-tight">Master<br/>Data</span>
+        </Link>
+      </div>
+
       <div className="bg-gradient-to-r from-blue-600 to-teal-800 rounded-xl p-8 text-white shadow-lg flex items-center justify-between overflow-hidden relative">
         <div className="relative z-10 space-y-2">
           <h2 className="text-3xl font-bold tracking-tight">

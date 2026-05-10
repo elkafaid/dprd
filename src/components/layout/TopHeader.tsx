@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { Bell, User } from "lucide-react";
+import { Bell, User, Menu } from "lucide-react";
 import { useStore } from "@/store/useStore";
 import {
   DropdownMenu,
@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 export const TopHeader = () => {
   const pathname = usePathname();
   const router = useRouter();
-  const { settings, logout } = useStore();
+  const { settings, logout, toggleMobileSidebar } = useStore();
 
   const handleLogout = () => {
     logout();
@@ -38,9 +38,15 @@ export const TopHeader = () => {
   });
 
   return (
-    <header className="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between sticky top-0 z-10">
-      <div className="flex items-center text-sm">
-        <span className="text-slate-500">Dashboard</span>
+    <header className="h-16 bg-white border-b border-slate-200 px-4 md:px-6 flex items-center justify-between sticky top-0 z-10">
+      <div className="flex items-center text-sm gap-3">
+        <button
+          className="md:hidden text-slate-500 hover:text-slate-700"
+          onClick={toggleMobileSidebar}
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+        <span className="text-slate-500 hidden sm:inline">Dashboard</span>
         {breadcrumbs.length > 0 && (
           <>
             <span className="mx-2 text-slate-300">/</span>

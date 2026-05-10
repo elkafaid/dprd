@@ -126,6 +126,9 @@ export type AppState = {
   isAuthenticated: boolean;
   user: User | null;
   isSidebarCollapsed: boolean;
+  isMobileSidebarOpen: boolean;
+  toggleMobileSidebar: () => void;
+  setMobileSidebarOpen: (isOpen: boolean) => void;
   settings: {
     instansiName: string;
     adminName: string;
@@ -253,6 +256,7 @@ export const useStore = create<AppState>()(
       isAuthenticated: false,
       user: null,
       isSidebarCollapsed: false,
+      isMobileSidebarOpen: false,
       settings: {
         instansiName: 'DPRD KAB. MOJOKERTO',
         adminName: 'Admin Keuangan',
@@ -262,6 +266,8 @@ export const useStore = create<AppState>()(
       login: (user) => set({ isAuthenticated: true, user }),
       logout: () => set({ isAuthenticated: false, user: null }),
       toggleSidebar: () => set((state) => ({ isSidebarCollapsed: !state.isSidebarCollapsed })),
+      toggleMobileSidebar: () => set((state) => ({ isMobileSidebarOpen: !state.isMobileSidebarOpen })),
+      setMobileSidebarOpen: (isOpen) => set({ isMobileSidebarOpen: isOpen }),
 
       addRegisterMasuk: (data) => set((state) => ({ registerMasuk: [...state.registerMasuk, { ...data, id: Math.random().toString(36).substr(2, 9) }] })),
       addRegisterKeluar: (data) => set((state) => ({ registerKeluar: [...state.registerKeluar, { ...data, id: Math.random().toString(36).substr(2, 9) }] })),
