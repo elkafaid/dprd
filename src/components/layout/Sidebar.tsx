@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useStore } from "@/store/useStore";
 import {
@@ -59,26 +59,41 @@ const SidebarItem = ({ icon: Icon, label, href, active, isCollapsed }: SidebarIt
   </Link>
 );
 
-interface SidebarGroupProps {
+const SidebarGroup = ({
+  title,
+  icon: Icon,
+  defaultExpanded = false,
+  children,
+  activeGroup = false,
+  isCollapsed = false,
+  href,
+}: {
   title: string;
   icon: any;
   children: React.ReactNode;
   defaultExpanded?: boolean;
   activeGroup?: boolean;
   isCollapsed?: boolean;
-}
-
-const SidebarGroup = ({ title, icon: Icon, children, defaultExpanded = false, activeGroup, isCollapsed }: SidebarGroupProps) => {
-  const [isExpanded, setIsExpanded] = React.useState(defaultExpanded);
+  href?: string;
+}) => {
+  const [expanded, setExpanded] = useState(defaultExpanded || activeGroup);
+  const router = useRouter();
 
   if (isCollapsed) {
     return <div className="py-2 space-y-1">{children}</div>;
   }
 
+  const handleClick = () => {
+    setExpanded(!expanded);
+    if (href) {
+      router.push(href);
+    }
+  };
+
   return (
     <div className="mb-2">
       <button
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={handleClick}
         className={cn(
           "w-full flex items-center justify-between px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors",
           activeGroup ? "text-blue-400" : "text-slate-500 hover:text-slate-300"
@@ -88,9 +103,9 @@ const SidebarGroup = ({ title, icon: Icon, children, defaultExpanded = false, ac
           <Icon className="w-4 h-4" />
           <span>{title}</span>
         </div>
-        <ChevronDown className={cn("w-3 h-3 transition-transform duration-200", isExpanded ? "rotate-180" : "rotate-0")} />
+        <ChevronDown className={cn("w-3 h-3 transition-transform duration-200", expanded ? "rotate-180" : "rotate-0")} />
       </button>
-      {isExpanded && <div className="mt-1 ml-4 space-y-1 border-l border-slate-800 pl-2">{children}</div>}
+      {expanded && <div className="mt-1 ml-4 space-y-1 border-l border-slate-800 pl-2">{children}</div>}
     </div>
   );
 };
@@ -121,7 +136,6 @@ export const Sidebar = () => {
 
       <div className="p-4 flex-1 overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         <style dangerouslySetInnerHTML={{ __html: '.scrollbar-hide::-webkit-scrollbar { display: none; }' }} />
-
 
         <div className="mb-6">
           {!isSidebarCollapsed && (
@@ -198,6 +212,7 @@ export const Sidebar = () => {
             defaultExpanded={pathname.startsWith("/keuangan")}
             activeGroup={pathname.startsWith("/keuangan")}
             isCollapsed={isSidebarCollapsed}
+            href="/keuangan/dashboard-keuangan"
           >
             <SidebarItem
               icon={ArrowDownToLine}
@@ -218,13 +233,6 @@ export const Sidebar = () => {
               label="Arsip SPJ"
               href="/keuangan/arsip-spj"
               active={pathname === "/keuangan/arsip-spj"}
-              isCollapsed={isSidebarCollapsed}
-            />
-            <SidebarItem
-              icon={BarChart}
-              label="Dashboard Keuangan"
-              href="/keuangan/dashboard-keuangan"
-              active={pathname === "/keuangan/dashboard-keuangan"}
               isCollapsed={isSidebarCollapsed}
             />
           </SidebarGroup>

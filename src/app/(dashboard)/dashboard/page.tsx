@@ -2,7 +2,7 @@
 
 import { useStore } from "@/store/useStore";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Wallet, ArrowDownToLine, ArrowUpFromLine, PieChart as PieChartIcon } from "lucide-react";
+import { Wallet, ArrowDownToLine, ArrowUpFromLine, PieChart as PieChartIcon, Mail, MailOpen, FileText, ClipboardList, Building2, Trees } from "lucide-react";
 import {
   PieChart,
   Pie,
@@ -13,7 +13,7 @@ import {
 } from "recharts";
 
 export default function Dashboard() {
-  const { jenisAnggaran, registerMasuk, registerKeluar } = useStore();
+  const { jenisAnggaran, registerMasuk, registerKeluar, suratMasuk, suratKeluar, pengaduan } = useStore();
 
   const totalAnggaran = jenisAnggaran.reduce((sum, item) => sum + item.alokasi, 0);
   const totalMasuk = registerMasuk.reduce((sum, item) => sum + item.jumlah, 0);
@@ -44,9 +44,25 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold tracking-tight text-slate-900">Selamat datang Rakyat Mojokerto</h2>
-        <p className="text-slate-500 mt-1">Sistem Informasi Transparansi Keuangan dan Anggaran DPRD Kab. Mojokerto.</p>
+      <div className="bg-gradient-to-r from-emerald-600 to-teal-800 rounded-xl p-8 text-white shadow-lg flex items-center justify-between overflow-hidden relative">
+        <div className="relative z-10 space-y-2">
+          <h2 className="text-3xl font-bold tracking-tight">
+            Selamat datang Admin DPRD Kab. Mojokerto
+          </h2>
+          <p className="text-emerald-50 text-lg max-w-xl">
+            Sistem Informasi Manajemen Terpadu untuk mengelola administrasi, keuangan, dan aspirasi masyarakat dengan transparan dan efisien.
+          </p>
+        </div>
+
+        <div className="relative z-10 hidden md:flex items-end gap-2 text-white/20">
+          <Trees className="w-16 h-16 mb-2" />
+          <Building2 className="w-32 h-32" />
+          <Trees className="w-20 h-20" />
+        </div>
+
+        {/* Decorative background elements */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-10 -mt-10"></div>
+        <div className="absolute bottom-0 left-1/2 w-48 h-48 bg-teal-900/30 rounded-full blur-2xl"></div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -96,6 +112,51 @@ export default function Dashboard() {
           <CardContent>
             <div className="text-2xl font-bold text-slate-900">{formatCurrency(sisaAnggaran)}</div>
             <p className="text-xs text-slate-500 mt-1">Total + Masuk - Keluar</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-3">
+        <Card className="bg-white shadow-sm border-slate-200">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-slate-600">
+              Total Surat Masuk
+            </CardTitle>
+            <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center">
+              <Mail className="h-4 w-4 text-blue-500" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-slate-900">{suratMasuk.length}</div>
+            <p className="text-xs text-slate-500 mt-1">Tata Usaha</p>
+          </CardContent>
+        </Card>
+        <Card className="bg-white shadow-sm border-slate-200">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-slate-600">
+              Total Surat Keluar
+            </CardTitle>
+            <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center">
+              <MailOpen className="h-4 w-4 text-indigo-500" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-slate-900">{suratKeluar.length}</div>
+            <p className="text-xs text-slate-500 mt-1">Tata Usaha</p>
+          </CardContent>
+        </Card>
+        <Card className="bg-white shadow-sm border-slate-200">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-slate-600">
+              Total Pengaduan
+            </CardTitle>
+            <div className="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center">
+              <ClipboardList className="h-4 w-4 text-amber-500" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-slate-900">{pengaduan.length}</div>
+            <p className="text-xs text-slate-500 mt-1">Aspirasi & Pokir</p>
           </CardContent>
         </Card>
       </div>
