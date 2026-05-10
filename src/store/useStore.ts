@@ -230,10 +230,21 @@ const initialCarousel: CarouselSlide[] = [
   { id: '3', imageUrl: 'https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?auto=format&fit=crop&q=80&w=1920', textLine1: 'Pelayanan Publik', textLine2: 'Mendengarkan dan Menindaklanjuti Setiap Aspirasi Masyarakat' },
 ];
 
+const loremText = `
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor.</p>
+<p>Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, sanguis elit accumsan lacus, eu feugiat ligula orci id quam.</p>
+<p>Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.</p>
+`;
+
 const initialBerita: Berita[] = [
-  { id: '1', title: 'Rapat Paripurna RAPBD 2024', content: 'DPRD Kabupaten Mojokerto menggelar Rapat Paripurna penyampaian RAPBD 2024...', imageUrl: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=800', date: '2023-11-10' },
-  { id: '2', title: 'Kunjungan Kerja ke Desa ABC', content: 'Anggota DPRD melakukan peninjauan proyek perbaikan jalan desa...', imageUrl: 'https://images.unsplash.com/photo-1584483766114-2cea6facdf57?auto=format&fit=crop&q=80&w=800', date: '2023-11-12' },
-  { id: '3', title: 'Sosialisasi Perda Ketertiban', content: 'Kegiatan sosialisasi perda ketertiban umum berlangsung di Balai Desa...', imageUrl: 'https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?auto=format&fit=crop&q=80&w=800', date: '2023-11-15' }
+  { id: '1', title: 'Rapat Paripurna RAPBD 2024', content: loremText, imageUrl: '/uploads/dummy-1.jpg', date: '2023-11-10' },
+  { id: '2', title: 'Kunjungan Kerja ke Desa ABC', content: loremText, imageUrl: '/uploads/dummy-2.jpg', date: '2023-11-12' },
+  { id: '3', title: 'Sosialisasi Perda Ketertiban', content: loremText, imageUrl: '/uploads/dummy-3.jpg', date: '2023-11-15' },
+  { id: '4', title: 'Tinjauan Infrastruktur Jalan', content: loremText, imageUrl: '/uploads/dummy-4.jpg', date: '2023-11-16' },
+  { id: '5', title: 'Penyusunan Program Kerja', content: loremText, imageUrl: '/uploads/dummy-5.jpg', date: '2023-11-18' },
+  { id: '6', title: 'Audiensi dengan Kelompok Tani', content: loremText, imageUrl: '/uploads/dummy-6.jpg', date: '2023-11-20' },
+  { id: '7', title: 'Sidang Komisi III', content: loremText, imageUrl: '/uploads/dummy-7.jpg', date: '2023-11-22' },
+  { id: '8', title: 'Kunjungan Industri Lokal', content: loremText, imageUrl: '/uploads/dummy-8.jpg', date: '2023-11-25' }
 ];
 
 export const useStore = create<AppState>()(

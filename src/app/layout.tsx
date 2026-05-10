@@ -7,6 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "DPRD KAB. MOJOKERTO",
   description: "Portal Publik & Dashboard Admin DPRD Kabupaten Mojokerto",
+  icons: {
+    icon: "/logo-mojokerto.png",
+  },
 };
 
 export default function RootLayout({

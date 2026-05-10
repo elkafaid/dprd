@@ -1,0 +1,628 @@
+
+> temp-app@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 497ms
+
+○ Compiling / ...
+The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET / 200 in 6.2s (next.js: 5.6s, application-code: 590ms)
+ GET /uploads/dummy-7.jpg 404 in 1252ms (next.js: 884ms, application-code: 368ms)
+ GET /uploads/dummy-5.jpg 404 in 1254ms (next.js: 939ms, application-code: 315ms)
+ GET /uploads/dummy-3.jpg 404 in 945ms (next.js: 720ms, application-code: 225ms)
+ GET /uploads/dummy-4.jpg 404 in 1265ms (next.js: 1066ms, application-code: 200ms)
+ GET /uploads/dummy-8.jpg 404 in 1308ms (next.js: 1133ms, application-code: 175ms)
+ GET /uploads/dummy-6.jpg 404 in 1295ms (next.js: 1142ms, application-code: 154ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /uploads/dummy-2.jpg 404 in 99ms (next.js: 10ms, application-code: 89ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+[browser] Image with src "/logo-mojokerto.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /uploads/dummy-8.jpg 404 in 1964ms (next.js: 778ms, application-code: 1186ms)
+ GET /uploads/dummy-7.jpg 404 in 1969ms (next.js: 869ms, application-code: 1100ms)
+ GET /uploads/dummy-6.jpg 404 in 1959ms (next.js: 909ms, application-code: 1050ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+ GET /uploads/dummy-3.jpg 404 in 1635ms (next.js: 652ms, application-code: 983ms)
+ GET /uploads/dummy-4.jpg 404 in 1641ms (next.js: 686ms, application-code: 954ms)
+ GET /uploads/dummy-5.jpg 404 in 1649ms (next.js: 746ms, application-code: 903ms)
+ GET /uploads/dummy-7.jpg 404 in 1661ms (next.js: 828ms, application-code: 832ms)
+ GET /uploads/dummy-6.jpg 404 in 1666ms (next.js: 949ms, application-code: 717ms)
+ GET /uploads/dummy-8.jpg 404 in 1682ms (next.js: 1010ms, application-code: 672ms)
+ GET /uploads/dummy-2.jpg 404 in 1698ms (next.js: 1076ms, application-code: 622ms)
+ GET /uploads/dummy-5.jpg 404 in 2.0s (next.js: 1442ms, application-code: 564ms)
+ GET /uploads/dummy-4.jpg 404 in 2.0s (next.js: 1495ms, application-code: 513ms)
+ GET /uploads/dummy-3.jpg 404 in 1982ms (next.js: 1527ms, application-code: 455ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-2.jpg 404 in 78ms (next.js: 6ms, application-code: 72ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+ GET /berita/8 200 in 1544ms (next.js: 1502ms, application-code: 42ms)
+ GET /uploads/dummy-8.jpg 404 in 70ms (next.js: 4ms, application-code: 67ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+ GET /uploads/dummy-7.jpg 404 in 188ms (next.js: 14ms, application-code: 174ms)
+ GET /uploads/dummy-6.jpg 404 in 190ms (next.js: 33ms, application-code: 157ms)
+ GET /uploads/dummy-5.jpg 404 in 191ms (next.js: 51ms, application-code: 140ms)
+ GET /uploads/dummy-4.jpg 404 in 192ms (next.js: 69ms, application-code: 123ms)
+ GET /uploads/dummy-3.jpg 404 in 194ms (next.js: 88ms, application-code: 106ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-2.jpg 404 in 72ms (next.js: 25ms, application-code: 47ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+ GET /uploads/dummy-1.jpg 404 in 44ms (next.js: 4ms, application-code: 40ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-1.jpg received null
+The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET / 200 in 103ms (next.js: 3ms, application-code: 100ms)
+ GET /uploads/dummy-8.jpg 404 in 198ms (next.js: 16ms, application-code: 182ms)
+ GET /uploads/dummy-7.jpg 404 in 199ms (next.js: 34ms, application-code: 165ms)
+ GET /uploads/dummy-6.jpg 404 in 202ms (next.js: 52ms, application-code: 149ms)
+ GET /uploads/dummy-5.jpg 404 in 203ms (next.js: 71ms, application-code: 133ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+ GET /uploads/dummy-4.jpg 404 in 231ms (next.js: 139ms, application-code: 92ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+ GET /uploads/dummy-3.jpg 404 in 75ms (next.js: 36ms, application-code: 39ms)
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-2.jpg 404 in 51ms (next.js: 9ms, application-code: 42ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+[browser] Image with src "/uploads/dummy-8.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-7.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-6.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-5.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-4.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-3.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-2.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/logo-mojokerto.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET / 200 in 131ms (next.js: 5ms, application-code: 127ms)
+ GET /uploads/dummy-8.jpg 404 in 319ms (next.js: 22ms, application-code: 297ms)
+ GET /uploads/dummy-7.jpg 404 in 320ms (next.js: 45ms, application-code: 275ms)
+ GET /uploads/dummy-6.jpg 404 in 322ms (next.js: 81ms, application-code: 241ms)
+ GET /uploads/dummy-5.jpg 404 in 326ms (next.js: 102ms, application-code: 224ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+ GET /uploads/dummy-4.jpg 404 in 343ms (next.js: 257ms, application-code: 86ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+ GET /uploads/dummy-3.jpg 404 in 71ms (next.js: 28ms, application-code: 42ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-2.jpg 404 in 49ms (next.js: 13ms, application-code: 36ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] Image with src "/uploads/dummy-8.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-7.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-6.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-5.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-4.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-3.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-2.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/logo-mojokerto.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /berita/8 200 in 103ms (next.js: 29ms, application-code: 73ms)
+ GET /uploads/dummy-8.jpg 404 in 89ms (next.js: 4ms, application-code: 85ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+ GET /uploads/dummy-7.jpg 404 in 200ms (next.js: 17ms, application-code: 184ms)
+ GET /uploads/dummy-6.jpg 404 in 202ms (next.js: 35ms, application-code: 167ms)
+ GET /uploads/dummy-5.jpg 404 in 204ms (next.js: 57ms, application-code: 147ms)
+ GET /uploads/dummy-3.jpg 404 in 205ms (next.js: 76ms, application-code: 129ms)
+ GET /uploads/dummy-4.jpg 404 in 207ms (next.js: 96ms, application-code: 111ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+ GET /uploads/dummy-2.jpg 404 in 78ms (next.js: 27ms, application-code: 50ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+ GET /uploads/dummy-1.jpg 404 in 41ms (next.js: 5ms, application-code: 36ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-1.jpg received null
+ GET /uploads/dummy-8.jpg 404 in 265ms (next.js: 19ms, application-code: 245ms)
+ GET /uploads/dummy-7.jpg 404 in 273ms (next.js: 38ms, application-code: 235ms)
+ GET /uploads/dummy-6.jpg 404 in 273ms (next.js: 66ms, application-code: 207ms)
+ GET /uploads/dummy-5.jpg 404 in 280ms (next.js: 85ms, application-code: 196ms)
+ GET /uploads/dummy-4.jpg 404 in 287ms (next.js: 104ms, application-code: 183ms)
+ GET /uploads/dummy-3.jpg 404 in 293ms (next.js: 123ms, application-code: 170ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-8.jpg 404 in 196ms (next.js: 63ms, application-code: 133ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+ GET /uploads/dummy-7.jpg 404 in 207ms (next.js: 48ms, application-code: 160ms)
+ GET /uploads/dummy-6.jpg 404 in 209ms (next.js: 68ms, application-code: 141ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+ GET /uploads/dummy-5.jpg 404 in 197ms (next.js: 76ms, application-code: 122ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+ GET /uploads/dummy-4.jpg 404 in 167ms (next.js: 55ms, application-code: 112ms)
+ GET /uploads/dummy-3.jpg 404 in 169ms (next.js: 72ms, application-code: 96ms)
+The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-2.jpg 404 in 87ms (next.js: 7ms, application-code: 81ms)
+ GET /uploads/dummy-1.jpg 404 in 89ms (next.js: 25ms, application-code: 64ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-1.jpg received null
+ GET / 200 in 220ms (next.js: 11ms, application-code: 209ms)
+ GET /uploads/dummy-8.jpg 404 in 198ms (next.js: 12ms, application-code: 185ms)
+ GET /uploads/dummy-7.jpg 404 in 199ms (next.js: 31ms, application-code: 169ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+ GET /uploads/dummy-6.jpg 404 in 216ms (next.js: 79ms, application-code: 137ms)
+ GET /uploads/dummy-5.jpg 404 in 218ms (next.js: 97ms, application-code: 121ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+ GET /uploads/dummy-4.jpg 404 in 157ms (next.js: 73ms, application-code: 84ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+ GET /uploads/dummy-3.jpg 404 in 67ms (next.js: 16ms, application-code: 50ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /uploads/dummy-2.jpg 404 in 64ms (next.js: 8ms, application-code: 56ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+[browser] Image with src "/uploads/dummy-8.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-7.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-6.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-5.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-4.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-3.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-2.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/logo-mojokerto.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET / 200 in 136ms (next.js: 4ms, application-code: 131ms)
+ GET /uploads/dummy-8.jpg 404 in 291ms (next.js: 17ms, application-code: 274ms)
+ GET /uploads/dummy-6.jpg 404 in 295ms (next.js: 55ms, application-code: 240ms)
+ GET /uploads/dummy-7.jpg 404 in 296ms (next.js: 99ms, application-code: 197ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+ GET /uploads/dummy-5.jpg 404 in 342ms (next.js: 167ms, application-code: 176ms)
+ GET /uploads/dummy-4.jpg 404 in 345ms (next.js: 194ms, application-code: 151ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+ GET /uploads/dummy-3.jpg 404 in 104ms (next.js: 58ms, application-code: 45ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-2.jpg 404 in 47ms (next.js: 7ms, application-code: 40ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] Image with src "/uploads/dummy-8.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-7.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-6.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-5.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-4.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-3.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-2.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/logo-mojokerto.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /berita/8 200 in 87ms (next.js: 28ms, application-code: 58ms)
+ GET /uploads/dummy-8.jpg 404 in 98ms (next.js: 4ms, application-code: 94ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+ GET /uploads/dummy-7.jpg 404 in 218ms (next.js: 23ms, application-code: 194ms)
+ GET /uploads/dummy-6.jpg 404 in 216ms (next.js: 42ms, application-code: 174ms)
+ GET /uploads/dummy-5.jpg 404 in 219ms (next.js: 62ms, application-code: 158ms)
+ GET /uploads/dummy-4.jpg 404 in 221ms (next.js: 84ms, application-code: 137ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+ GET /uploads/dummy-3.jpg 404 in 230ms (next.js: 154ms, application-code: 76ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-2.jpg 404 in 64ms (next.js: 17ms, application-code: 47ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+ GET /uploads/dummy-1.jpg 404 in 41ms (next.js: 5ms, application-code: 36ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-1.jpg received null
+ GET /uploads/dummy-8.jpg 404 in 259ms (next.js: 17ms, application-code: 242ms)
+ GET /uploads/dummy-7.jpg 404 in 261ms (next.js: 36ms, application-code: 225ms)
+ GET /uploads/dummy-6.jpg 404 in 262ms (next.js: 70ms, application-code: 193ms)
+ GET /uploads/dummy-5.jpg 404 in 263ms (next.js: 99ms, application-code: 164ms)
+ GET /uploads/dummy-4.jpg 404 in 265ms (next.js: 119ms, application-code: 145ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+ GET /uploads/dummy-3.jpg 404 in 274ms (next.js: 192ms, application-code: 82ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-8.jpg 404 in 153ms (next.js: 13ms, application-code: 140ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+ GET /uploads/dummy-7.jpg 404 in 251ms (next.js: 50ms, application-code: 201ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+ GET /uploads/dummy-6.jpg 404 in 316ms (next.js: 81ms, application-code: 234ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+ GET /uploads/dummy-5.jpg 404 in 304ms (next.js: 75ms, application-code: 229ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+ GET /uploads/dummy-4.jpg 404 in 287ms (next.js: 106ms, application-code: 181ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /uploads/dummy-3.jpg 404 in 273ms (next.js: 144ms, application-code: 129ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-2.jpg 404 in 79ms (next.js: 8ms, application-code: 71ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+ GET /uploads/dummy-1.jpg 404 in 82ms (next.js: 36ms, application-code: 46ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-1.jpg received null
+ GET / 200 in 213ms (next.js: 13ms, application-code: 200ms)
+ GET /uploads/dummy-8.jpg 404 in 186ms (next.js: 14ms, application-code: 172ms)
+ GET /uploads/dummy-7.jpg 404 in 187ms (next.js: 32ms, application-code: 155ms)
+ GET /uploads/dummy-6.jpg 404 in 189ms (next.js: 50ms, application-code: 139ms)
+ GET /uploads/dummy-5.jpg 404 in 191ms (next.js: 68ms, application-code: 123ms)
+ GET /uploads/dummy-4.jpg 404 in 192ms (next.js: 86ms, application-code: 107ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+ GET /uploads/dummy-3.jpg 404 in 72ms (next.js: 9ms, application-code: 62ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /uploads/dummy-2.jpg 404 in 52ms (next.js: 9ms, application-code: 42ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+[browser] Image with src "/uploads/dummy-8.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-7.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-6.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-5.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-4.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-3.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-2.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/logo-mojokerto.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /uploads/dummy-8.jpg 404 in 409ms (next.js: 30ms, application-code: 379ms)
+ GET /uploads/dummy-7.jpg 404 in 406ms (next.js: 59ms, application-code: 347ms)
+ GET /uploads/dummy-6.jpg 404 in 408ms (next.js: 125ms, application-code: 283ms)
+ GET /uploads/dummy-5.jpg 404 in 416ms (next.js: 154ms, application-code: 263ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+ GET /uploads/dummy-4.jpg 404 in 428ms (next.js: 321ms, application-code: 107ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /dashboard 200 in 3.5s (next.js: 3.0s, application-code: 463ms)
+ GET /uploads/dummy-3.jpg 404 in 109ms (next.js: 17ms, application-code: 92ms)
+ GET /uploads/dummy-2.jpg 404 in 110ms (next.js: 51ms, application-code: 59ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+ GET / 200 in 262ms (next.js: 5ms, application-code: 257ms)
+ GET /uploads/dummy-8.jpg 404 in 197ms (next.js: 19ms, application-code: 178ms)
+ GET /uploads/dummy-7.jpg 404 in 198ms (next.js: 37ms, application-code: 161ms)
+ GET /uploads/dummy-6.jpg 404 in 199ms (next.js: 54ms, application-code: 145ms)
+ GET /uploads/dummy-5.jpg 404 in 199ms (next.js: 70ms, application-code: 130ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+ GET /uploads/dummy-4.jpg 404 in 224ms (next.js: 143ms, application-code: 81ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /uploads/dummy-8.jpg 404 in 167ms (next.js: 13ms, application-code: 154ms)
+ GET /uploads/dummy-7.jpg 404 in 168ms (next.js: 35ms, application-code: 134ms)
+ GET /uploads/dummy-6.jpg 404 in 171ms (next.js: 55ms, application-code: 116ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+              <SegmentViewNode type="page" pagePath="src/page.tsx">
+                <SegmentTrieNode>
+                <ClientPageRoot Component={function LandingPage} serverProvidedParams={{...}}>
+                  <LandingPage params={Promise} searchParams={Promise}>
+                    <div className="min-h-scre...">
+                      <nav className="fixed top-...">
+                        <div>
+                        <div className="flex-none">
+                          <LinkComponent href="/dashboard">
++                           <a
++                             ref={function}
++                             onClick={function onClick}
++                             onMouseEnter={function onMouseEnter}
++                             onTouchStart={function onTouchStart}
++                             href="/dashboard"
++                           >
+-                           <button
+-                             type="button"
+-                             tabindex="0"
+-                             data-slot="button"
+-                             className={"group/button inline-flex shrink-0 items-center justify-center rounded-lg bo..."}
+-                           >
+                      ...
+              ...
+            ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at a (<anonymous>)
+    at LandingPage (src/app/page.tsx:148:13)
+  146 |         <div className="flex-none">
+  147 |           {useStore.getState().isAuthenticated ? (
+> 148 |             <Link href="/dashboard">
+      |             ^
+  149 |               <Button
+  150 |                 className="bg-blue-600 text-white hover:bg-blue-700 text-[10px] md:text-s...
+  151 |               >
+[browser] Image with src "/uploads/dummy-4.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /uploads/dummy-5.jpg 404 in 177ms (next.js: 107ms, application-code: 70ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+[browser] Image with src "/logo-mojokerto.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /uploads/dummy-8.jpg 404 in 207ms (next.js: 13ms, application-code: 194ms)
+ GET /uploads/dummy-7.jpg 404 in 208ms (next.js: 33ms, application-code: 175ms)
+ GET /uploads/dummy-6.jpg 404 in 209ms (next.js: 53ms, application-code: 156ms)
+ GET /uploads/dummy-5.jpg 404 in 211ms (next.js: 86ms, application-code: 125ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+ GET /uploads/dummy-4.jpg 404 in 217ms (next.js: 151ms, application-code: 67ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+ GET /uploads/dummy-3.jpg 404 in 85ms (next.js: 5ms, application-code: 81ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-2.jpg 404 in 90ms (next.js: 32ms, application-code: 57ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+ GET /manajemen-web/berita 200 in 1499ms (next.js: 1318ms, application-code: 182ms)
+ GET /uploads/dummy-4.jpg 404 in 235ms (next.js: 77ms, application-code: 158ms)
+ GET /uploads/dummy-3.jpg 404 in 237ms (next.js: 58ms, application-code: 178ms)
+ GET /uploads/dummy-2.jpg 404 in 238ms (next.js: 31ms, application-code: 207ms)
+ GET /uploads/dummy-1.jpg 404 in 240ms (next.js: 14ms, application-code: 227ms)
+ GET /uploads/dummy-6.jpg 404 in 236ms (next.js: 156ms, application-code: 79ms)
+ GET /uploads/dummy-5.jpg 404 in 237ms (next.js: 138ms, application-code: 99ms)
+ GET /uploads/dummy-7.jpg 404 in 100ms (next.js: 6ms, application-code: 94ms)
+ GET /uploads/dummy-8.jpg 404 in 102ms (next.js: 44ms, application-code: 58ms)
+[browser] Image with src "/logo-mojokerto.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Uncaught TypeError: react_dom_1.default.findDOMNode is not a function
+    at BeritaManagementPage (src/app/(dashboard)/manajemen-web/berita/page.tsx:173:19)
+  171 |                 <Label htmlFor="content">Isi Berita</Label>
+  172 |                 <div className="bg-white rounded-md">
+> 173 |                   <ReactQuill
+      |                   ^
+  174 |                     theme="snow"
+  175 |                     value={content}
+  176 |                     onChange={setContent}
+The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET / 200 in 690ms (next.js: 125ms, application-code: 566ms)
+ GET /uploads/dummy-8.jpg 404 in 242ms (next.js: 54ms, application-code: 188ms)
+ GET /uploads/dummy-6.jpg 404 in 228ms (next.js: 76ms, application-code: 152ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+ GET /uploads/dummy-7.jpg 404 in 254ms (next.js: 128ms, application-code: 126ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+ GET /uploads/dummy-5.jpg 404 in 98ms (next.js: 22ms, application-code: 76ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+ GET /uploads/dummy-4.jpg 404 in 154ms (next.js: 10ms, application-code: 144ms)
+ GET /uploads/dummy-3.jpg 404 in 155ms (next.js: 37ms, application-code: 119ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-2.jpg 404 in 161ms (next.js: 108ms, application-code: 53ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] Image with src "/uploads/dummy-8.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-7.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-6.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-5.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-4.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-3.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-2.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/logo-mojokerto.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /berita/8 200 in 143ms (next.js: 57ms, application-code: 87ms)
+ GET /uploads/dummy-8.jpg 404 in 74ms (next.js: 8ms, application-code: 66ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+ GET /uploads/dummy-7.jpg 404 in 217ms (next.js: 20ms, application-code: 197ms)
+ GET /uploads/dummy-6.jpg 404 in 218ms (next.js: 42ms, application-code: 176ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+ GET /uploads/dummy-5.jpg 404 in 223ms (next.js: 99ms, application-code: 123ms)
+ GET /uploads/dummy-4.jpg 404 in 223ms (next.js: 117ms, application-code: 106ms)
+ GET /uploads/dummy-3.jpg 404 in 225ms (next.js: 135ms, application-code: 90ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-2.jpg 404 in 64ms (next.js: 24ms, application-code: 39ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+ GET /uploads/dummy-1.jpg 404 in 46ms (next.js: 4ms, application-code: 42ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-1.jpg received null
+ GET /uploads/dummy-8.jpg 404 in 253ms (next.js: 19ms, application-code: 234ms)
+ GET /uploads/dummy-7.jpg 404 in 254ms (next.js: 39ms, application-code: 215ms)
+ GET /uploads/dummy-6.jpg 404 in 256ms (next.js: 60ms, application-code: 196ms)
+ GET /uploads/dummy-5.jpg 404 in 257ms (next.js: 79ms, application-code: 178ms)
+ GET /uploads/dummy-4.jpg 404 in 258ms (next.js: 97ms, application-code: 160ms)
+ GET /uploads/dummy-3.jpg 404 in 258ms (next.js: 128ms, application-code: 130ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-8.jpg 404 in 153ms (next.js: 15ms, application-code: 139ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+ GET /uploads/dummy-7.jpg 404 in 198ms (next.js: 44ms, application-code: 153ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+ GET /uploads/dummy-6.jpg 404 in 239ms (next.js: 84ms, application-code: 155ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+ GET /uploads/dummy-5.jpg 404 in 225ms (next.js: 85ms, application-code: 140ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+ GET /uploads/dummy-4.jpg 404 in 200ms (next.js: 79ms, application-code: 121ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+ GET /uploads/dummy-3.jpg 404 in 179ms (next.js: 92ms, application-code: 87ms)
+The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-2.jpg 404 in 87ms (next.js: 12ms, application-code: 75ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+ GET /uploads/dummy-1.jpg 404 in 85ms (next.js: 42ms, application-code: 43ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-1.jpg received null
+ GET / 200 in 291ms (next.js: 14ms, application-code: 277ms)
+ GET /uploads/dummy-8.jpg 404 in 194ms (next.js: 16ms, application-code: 178ms)
+ GET /uploads/dummy-7.jpg 404 in 196ms (next.js: 35ms, application-code: 161ms)
+ GET /uploads/dummy-6.jpg 404 in 199ms (next.js: 53ms, application-code: 147ms)
+ GET /uploads/dummy-5.jpg 404 in 200ms (next.js: 69ms, application-code: 131ms)
+ GET /uploads/dummy-4.jpg 404 in 201ms (next.js: 86ms, application-code: 115ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-8.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-7.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-6.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-5.jpg received null
+⨯ The requested resource isn't a valid image for /uploads/dummy-4.jpg received null
+ GET /uploads/dummy-3.jpg 404 in 75ms (next.js: 13ms, application-code: 62ms)
+⨯ The requested resource isn't a valid image for /uploads/dummy-3.jpg received null
+ GET /uploads/dummy-2.jpg 404 in 46ms (next.js: 6ms, application-code: 40ms)
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+⨯ The requested resource isn't a valid image for /uploads/dummy-2.jpg received null
+[browser] Image with src "/uploads/dummy-8.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-7.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-6.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-5.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-4.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-3.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/uploads/dummy-2.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "/logo-mojokerto.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /dashboard 200 in 71ms (next.js: 11ms, application-code: 59ms)
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] Encountered two children with the same key, `cell-${index}`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+ GET /dashboard 200 in 294ms (next.js: 5ms, application-code: 290ms)
+[browser] Image with src "/logo-mojokerto.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /manajemen-web/berita 200 in 145ms (next.js: 31ms, application-code: 114ms)
+ GET /uploads/dummy-3.jpg 404 in 458ms (next.js: 86ms, application-code: 371ms)
+ GET /uploads/dummy-2.jpg 404 in 462ms (next.js: 57ms, application-code: 404ms)
+ GET /uploads/dummy-1.jpg 404 in 466ms (next.js: 27ms, application-code: 438ms)
+ GET /uploads/dummy-6.jpg 404 in 457ms (next.js: 279ms, application-code: 178ms)
+ GET /uploads/dummy-5.jpg 404 in 460ms (next.js: 239ms, application-code: 221ms)
+ GET /uploads/dummy-4.jpg 404 in 463ms (next.js: 186ms, application-code: 277ms)
+[browser] Image with src "/logo-mojokerto.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /uploads/dummy-8.jpg 404 in 156ms (next.js: 12ms, application-code: 144ms)
+ GET /uploads/dummy-7.jpg 404 in 163ms (next.js: 57ms, application-code: 105ms)
