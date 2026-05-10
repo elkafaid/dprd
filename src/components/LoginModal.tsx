@@ -23,8 +23,8 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === "admin" && password === "admin123") {
-      login({ username: "admin", name: "Admin Keuangan" });
+    if ((username === "admin" && password === "admin123") || (username === "Admin" && password === "AdminDPRD")) {
+      login({ username: username, name: username === "Admin" ? "Administrator DPRD" : "Admin Keuangan" });
       onClose();
       router.push("/dashboard");
     } else {

@@ -222,7 +222,7 @@ export default function LandingPage() {
                       ))}
                     </Pie>
                     <RechartsTooltip
-                      formatter={(value: string | number) => [formatRupiah(Number(value)), 'Alokasi']}
+                      formatter={(value: any) => [formatRupiah(Number(value || 0)), 'Alokasi']}
                       contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
                       itemStyle={{ fontSize: '14px', fontWeight: 'bold' }}
                     />
