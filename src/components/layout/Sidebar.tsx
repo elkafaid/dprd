@@ -1,17 +1,29 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { useStore } from "@/store/useStore";
 import {
   Home,
-  FileText,
-  Briefcase,
-  Users,
   Wallet,
   ArrowDownToLine,
   ArrowUpFromLine,
   Archive,
   BarChart,
+  Users,
+  Briefcase,
+  Mail,
+  CalendarDays,
+  MessageSquare,
+  ClipboardList,
+  BookOpen,
+  Scale,
+  Gavel,
+  FileText,
+  Car,
+  Building,
   PieChart,
   Database,
   User,
@@ -20,102 +32,65 @@ import {
   ChevronDown,
   PanelLeftClose,
   PanelLeftOpen,
-  Mail,
-  CalendarDays,
-  MessageSquare,
-  ClipboardList,
-  Scale,
-  Car,
-  Building,
-  Gavel,
-  BookOpen
 } from "lucide-react";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { useStore } from "@/store/useStore";
 
-const SidebarItem = ({
-  icon: Icon,
-  label,
-  href,
-  active,
-  isCollapsed,
-}: {
-  icon?: any;
+interface SidebarItemProps {
+  icon: any;
   label: string;
-  href?: string;
+  href: string;
   active?: boolean;
   isCollapsed?: boolean;
-}) => {
-  const content = (
-    <div
-      className={cn(
-        "flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-colors",
-        active
-          ? "bg-blue-600 text-white font-medium"
-          : "text-slate-300 hover:bg-slate-800 hover:text-white"
-      )}
-      title={isCollapsed ? label : undefined}
-    >
-      {Icon && <Icon className={cn("w-5 h-5 shrink-0")} />}
-      {!isCollapsed && <span className="truncate">{label}</span>}
-    </div>
-  );
+}
 
-  return href ? <Link href={href}>{content}</Link> : content;
-};
+const SidebarItem = ({ icon: Icon, label, href, active, isCollapsed }: SidebarItemProps) => (
+  <Link
+    href={href}
+    className={cn(
+      "flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200",
+      active
+        ? "bg-blue-600 text-white shadow-md shadow-blue-900/20"
+        : "text-slate-400 hover:bg-slate-800 hover:text-white",
+      isCollapsed && "justify-center px-0 h-10 w-10 mx-auto"
+    )}
+    title={isCollapsed ? label : undefined}
+  >
+    <Icon className={cn("w-5 h-5 shrink-0", active ? "text-white" : "text-slate-400")} />
+    {!isCollapsed && <span className="truncate">{label}</span>}
+  </Link>
+);
 
-const SidebarGroup = ({
-  title,
-  icon: Icon,
-  defaultExpanded = false,
-  children,
-  activeGroup = false,
-  isCollapsed = false,
-}: {
+interface SidebarGroupProps {
   title: string;
-  icon?: any;
-  defaultExpanded?: boolean;
+  icon: any;
   children: React.ReactNode;
+  defaultExpanded?: boolean;
   activeGroup?: boolean;
   isCollapsed?: boolean;
-}) => {
-  const [expanded, setExpanded] = useState(defaultExpanded || activeGroup);
+}
+
+const SidebarGroup = ({ title, icon: Icon, children, defaultExpanded = false, activeGroup, isCollapsed }: SidebarGroupProps) => {
+  const [isExpanded, setIsExpanded] = React.useState(defaultExpanded);
 
   if (isCollapsed) {
-    return <div className="mb-2">{children}</div>;
+    return <div className="py-2 space-y-1">{children}</div>;
   }
 
   return (
     <div className="mb-2">
       <button
-        onClick={() => setExpanded(!expanded)}
+        onClick={() => setIsExpanded(!isExpanded)}
         className={cn(
-          "w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-sm transition-colors",
-          activeGroup
-            ? "text-white font-medium"
-            : "text-slate-300 hover:bg-slate-800 hover:text-white"
+          "w-full flex items-center justify-between px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors",
+          activeGroup ? "text-blue-400" : "text-slate-500 hover:text-slate-300"
         )}
       >
         <div className="flex items-center gap-3">
-          {Icon && <Icon className="w-5 h-5 shrink-0" />}
-          <span className="truncate">{title}</span>
+          <Icon className="w-4 h-4" />
+          <span>{title}</span>
         </div>
-        <ChevronDown
-          className={cn(
-            "w-4 h-4 shrink-0 transition-transform duration-200",
-            expanded ? "rotate-180" : ""
-          )}
-        />
+        <ChevronDown className={cn("w-3 h-3 transition-transform duration-200", isExpanded ? "rotate-180" : "rotate-0")} />
       </button>
-      <div
-        className={cn(
-          "overflow-hidden transition-all duration-200",
-          expanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
-        )}
-      >
-        <div className="pl-6 pr-2 py-1 space-y-1">{children}</div>
-      </div>
+      {isExpanded && <div className="mt-1 ml-4 space-y-1 border-l border-slate-800 pl-2">{children}</div>}
     </div>
   );
 };
@@ -127,7 +102,7 @@ export const Sidebar = () => {
   return (
     <aside
       className={cn(
-        "bg-slate-900 text-white inset-y-0 fixed left-0 flex flex-col z-20 transition-all duration-300 ease-in-out overflow-hidden border-r border-slate-800",
+        "bg-slate-900 text-white h-screen flex flex-col fixed left-0 top-0 z-20 transition-all duration-300 ease-in-out overflow-hidden border-r border-slate-800",
         isSidebarCollapsed ? "w-[80px]" : "w-[260px]"
       )}
     >
@@ -144,8 +119,8 @@ export const Sidebar = () => {
         </div>
       </div>
 
-      <div className="p-4 flex-1 overflow-y-auto [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-
+      <div className="p-4 flex-1 overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <style dangerouslySetInnerHTML={{ __html: '.scrollbar-hide::-webkit-scrollbar { display: none; }' }} />
 
 
         <div className="mb-6">
