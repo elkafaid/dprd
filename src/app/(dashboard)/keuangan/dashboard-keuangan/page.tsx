@@ -115,7 +115,7 @@ export default function DashboardKeuanganPage() {
            </CardHeader>
            <CardContent className="flex flex-col gap-3">
               <Button variant="outline" className="w-full justify-start gap-2">
-                <ArrowDownToLine className="w-4 h-4 text-emerald-500"/> Tambah Register Masuk
+                <ArrowDownToLine className="w-4 h-4 text-blue-500"/> Tambah Register Masuk
               </Button>
               <Button variant="outline" className="w-full justify-start gap-2">
                 <ArrowUpFromLine className="w-4 h-4 text-rose-500"/> Tambah Register Keluar
@@ -154,7 +154,7 @@ export default function DashboardKeuanganPage() {
                       <td className="px-4 py-3">{item.nomorRegister}</td>
                       <td className="px-4 py-3">{item.uraian}</td>
                       <td className="px-4 py-3">{item.sumberDana}</td>
-                      <td className="px-4 py-3 text-right font-medium text-emerald-600">+{formatCurrency(item.jumlah)}</td>
+                      <td className="px-4 py-3 text-right font-medium text-blue-600">+{formatCurrency(item.jumlah)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -236,7 +236,7 @@ export default function DashboardKeuanganPage() {
                       <td className="px-4 py-3 text-right">{formatCurrency(item.totalBiaya)}</td>
                       <td className="px-4 py-3 text-center">
                         <span className={`px-2 py-1 text-xs rounded-full ${
-                          item.status === 'Disetujui' ? 'bg-emerald-100 text-emerald-700' :
+                          item.status === 'Disetujui' ? 'bg-blue-100 text-blue-700' :
                           item.status === 'Menunggu Verifikasi' ? 'bg-amber-100 text-amber-700' :
                           'bg-slate-100 text-slate-700'
                         }`}>

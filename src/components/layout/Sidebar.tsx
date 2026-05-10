@@ -32,7 +32,11 @@ import {
   ChevronDown,
   PanelLeftClose,
   PanelLeftOpen,
+  Globe,
+  Image as ImageIcon,
+  Newspaper
 } from "lucide-react";
+import Image from "next/image";
 
 interface SidebarItemProps {
   icon: any;
@@ -121,10 +125,10 @@ export const Sidebar = () => {
         isSidebarCollapsed ? "w-[80px]" : "w-[260px]"
       )}
     >
-      <div className={cn("flex items-center p-4 border-b border-slate-800 h-16 shrink-0", isSidebarCollapsed ? "justify-center" : "justify-between")}>
+      <div className={cn("flex items-center p-4 border-b border-slate-800 h-16 shrink-0 relative", isSidebarCollapsed ? "justify-center" : "justify-between")}>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-md bg-blue-600 flex items-center justify-center font-bold text-white shrink-0">
-            D
+          <div className="w-8 h-8 rounded-md flex items-center justify-center shrink-0 relative">
+             <Image src="/logo-mojokerto.png" alt="Logo" fill className="object-contain" />
           </div>
           {!isSidebarCollapsed && (
              <h1 className="font-bold text-sm leading-tight tracking-tight">
@@ -132,6 +136,16 @@ export const Sidebar = () => {
              </h1>
           )}
         </div>
+
+        {!isSidebarCollapsed && (
+           <button
+             onClick={toggleSidebar}
+             className="text-slate-400 hover:text-white transition-colors"
+             title="Collapse Sidebar"
+           >
+             <PanelLeftClose className="w-5 h-5" />
+           </button>
+        )}
       </div>
 
       <div className="p-4 flex-1 overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
@@ -336,6 +350,29 @@ export const Sidebar = () => {
             />
           </SidebarGroup>
 
+          <SidebarGroup
+            title="MANAJEMEN WEB"
+            icon={Globe}
+            defaultExpanded={pathname.startsWith("/manajemen-web")}
+            activeGroup={pathname.startsWith("/manajemen-web")}
+            isCollapsed={isSidebarCollapsed}
+          >
+            <SidebarItem
+              icon={ImageIcon}
+              label="Carousel"
+              href="/manajemen-web/carousel"
+              active={pathname === "/manajemen-web/carousel"}
+              isCollapsed={isSidebarCollapsed}
+            />
+            <SidebarItem
+              icon={Newspaper}
+              label="Berita"
+              href="/manajemen-web/berita"
+              active={pathname === "/manajemen-web/berita"}
+              isCollapsed={isSidebarCollapsed}
+            />
+          </SidebarGroup>
+
           <div className="mt-4">
              <SidebarItem
                 icon={Settings}
@@ -349,7 +386,7 @@ export const Sidebar = () => {
       </div>
 
       <div className="p-4 border-t border-slate-800 space-y-2 shrink-0">
-        {isAuthenticated ? (
+        {isAuthenticated && (
           <button
             onClick={logout}
             className={cn(
@@ -360,27 +397,19 @@ export const Sidebar = () => {
           >
             {isSidebarCollapsed ? <User className="w-5 h-5 text-red-400" /> : <span>Logout</span>}
           </button>
-        ) : (
-          <Link href="/login" className="w-full">
-            <div className={cn(
-              "flex items-center justify-center gap-3 px-4 py-2.5 rounded-lg text-sm text-blue-400 hover:bg-slate-800 hover:text-blue-300 transition-colors",
-              isSidebarCollapsed && "px-0"
-            )} title="Login Admin">
-              {isSidebarCollapsed ? <User className="w-5 h-5 text-blue-400" /> : <span>Login Admin</span>}
-            </div>
-          </Link>
         )}
-        <button
-          onClick={toggleSidebar}
-          className={cn(
-            "w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-lg text-sm text-slate-400 hover:bg-slate-800 hover:text-slate-300 transition-colors",
-            isSidebarCollapsed && "px-0"
-          )}
-          title="Toggle Sidebar"
-        >
-          {isSidebarCollapsed ? <PanelLeftOpen className="w-5 h-5" /> : <PanelLeftClose className="w-5 h-5" />}
-          {!isSidebarCollapsed && <span>Collapse</span>}
-        </button>
+        {isSidebarCollapsed && (
+           <button
+             onClick={toggleSidebar}
+             className={cn(
+               "w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-lg text-sm text-slate-400 hover:bg-slate-800 hover:text-slate-300 transition-colors",
+               isSidebarCollapsed && "px-0"
+             )}
+             title="Expand Sidebar"
+           >
+             <PanelLeftOpen className="w-5 h-5" />
+           </button>
+        )}
       </div>
     </aside>
   );

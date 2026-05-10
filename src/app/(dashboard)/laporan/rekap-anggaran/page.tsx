@@ -53,11 +53,11 @@ export default function RekapAnggaranPage() {
             <CardContent>
                <div className="space-y-4">
                  <div className="flex justify-between text-sm">
-                   <div className="text-emerald-600 font-medium">Terserap: {formatCurrency(item.terpakai)} ({item.percentage.toFixed(1)}%)</div>
+                   <div className="text-blue-600 font-medium">Terserap: {formatCurrency(item.terpakai)} ({item.percentage.toFixed(1)}%)</div>
                    <div className="text-blue-600 font-medium">Sisa: {formatCurrency(item.sisa)}</div>
                  </div>
                  <div className="h-4 w-full bg-slate-100 rounded-full overflow-hidden">
-                    <div className={`h-full rounded-full ${item.percentage > 80 ? 'bg-rose-500' : item.percentage > 50 ? 'bg-amber-500' : 'bg-emerald-500'}`} style={{ width: `${Math.min(item.percentage, 100)}%` }} />
+                    <div className={`h-full rounded-full ${item.percentage > 80 ? 'bg-rose-500' : item.percentage > 50 ? 'bg-amber-500' : 'bg-blue-500'}`} style={{ width: `${Math.min(item.percentage, 100)}%` }} />
                  </div>
                </div>
             </CardContent>
