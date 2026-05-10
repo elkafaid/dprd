@@ -91,8 +91,8 @@ export default function SingleBeritaPage() {
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <section className="space-y-6">
              <div className="flex items-center gap-3 mb-6">
-                <FileText className="w-6 h-6 text-blue-600" />
-                <h2 className="text-2xl font-bold text-slate-800">Berita Lainnya</h2>
+                <FileText className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
+                <h2 className="text-lg md:text-xl font-bold text-slate-800">Berita Lainnya</h2>
              </div>
 
              {sortedBerita.length === 0 ? (
