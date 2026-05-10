@@ -50,52 +50,52 @@ export default function Dashboard() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="bg-blue-600 text-white shadow-sm border-0">
+        <Card className="bg-white shadow-sm border-slate-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-white/90">
+            <CardTitle className="text-sm font-medium text-slate-500">
               Total Anggaran
             </CardTitle>
-            <Wallet className="h-4 w-4 text-white/80" />
+            <div className="w-8 h-8 rounded bg-blue-600 flex items-center justify-center"><Wallet className="h-4 w-4 text-white" /></div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">{formatCurrency(totalAnggaran)}</div>
-            <p className="text-xs text-white/80 mt-1">Berdasarkan Master Data</p>
+            <div className="text-2xl font-bold text-slate-900">{formatCurrency(totalAnggaran)}</div>
+            <p className="text-xs text-slate-500 mt-1">Berdasarkan Master Data</p>
           </CardContent>
         </Card>
-        <Card className="bg-emerald-600 text-white shadow-sm border-0">
+        <Card className="bg-white shadow-sm border-slate-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-white/90">
+            <CardTitle className="text-sm font-medium text-slate-500">
               Total Register Masuk
             </CardTitle>
-            <ArrowDownToLine className="h-4 w-4 text-white/80" />
+            <div className="w-8 h-8 rounded bg-emerald-600 flex items-center justify-center"><ArrowDownToLine className="h-4 w-4 text-white" /></div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">{formatCurrency(totalMasuk)}</div>
-            <p className="text-xs text-white/80 mt-1">Total Pemasukan Tercatat</p>
+            <div className="text-2xl font-bold text-slate-900">{formatCurrency(totalMasuk)}</div>
+            <p className="text-xs text-slate-500 mt-1">Total Pemasukan Tercatat</p>
           </CardContent>
         </Card>
-        <Card className="bg-rose-600 text-white shadow-sm border-0">
+        <Card className="bg-white shadow-sm border-slate-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-white/90">
+            <CardTitle className="text-sm font-medium text-slate-500">
               Total Register Keluar
             </CardTitle>
-            <ArrowUpFromLine className="h-4 w-4 text-white/80" />
+            <div className="w-8 h-8 rounded bg-rose-600 flex items-center justify-center"><ArrowUpFromLine className="h-4 w-4 text-white" /></div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">{formatCurrency(totalKeluar)}</div>
-            <p className="text-xs text-white/80 mt-1">Total Pengeluaran Tercatat</p>
+            <div className="text-2xl font-bold text-slate-900">{formatCurrency(totalKeluar)}</div>
+            <p className="text-xs text-slate-500 mt-1">Total Pengeluaran Tercatat</p>
           </CardContent>
         </Card>
-        <Card className="bg-purple-600 text-white shadow-sm border-0">
+        <Card className="bg-white shadow-sm border-slate-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-white/90">
+            <CardTitle className="text-sm font-medium text-slate-500">
               Sisa Anggaran
             </CardTitle>
-            <PieChartIcon className="h-4 w-4 text-white/80" />
+            <div className="w-8 h-8 rounded bg-purple-600 flex items-center justify-center"><PieChartIcon className="h-4 w-4 text-white" /></div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">{formatCurrency(sisaAnggaran)}</div>
-            <p className="text-xs text-white/80 mt-1">Total + Masuk - Keluar</p>
+            <div className="text-2xl font-bold text-slate-900">{formatCurrency(sisaAnggaran)}</div>
+            <p className="text-xs text-slate-500 mt-1">Total + Masuk - Keluar</p>
           </CardContent>
         </Card>
       </div>
@@ -141,14 +141,15 @@ export default function Dashboard() {
           </CardHeader>
           <CardContent className="h-[350px]">
             {groupedData.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
+              <div className="relative w-full h-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
                   <Pie
                     data={groupedData}
                     cx="50%"
                     cy="50%"
-                    innerRadius={80}
-                    outerRadius={120}
+                    innerRadius={90}
+                    outerRadius={110}
                     paddingAngle={2}
                     dataKey="value"
                   >
@@ -163,6 +164,11 @@ export default function Dashboard() {
                   <Legend verticalAlign="bottom" height={36} iconType="circle" />
                 </PieChart>
               </ResponsiveContainer>
+                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none pb-6">
+                  <span className="text-xs text-slate-500">Total Pengeluaran</span>
+                  <span className="text-lg font-bold text-slate-900">{formatCurrency(totalKeluar)}</span>
+                </div>
+              </div>
             ) : (
               <div className="flex items-center justify-center h-full text-slate-400">
                 Data tidak tersedia

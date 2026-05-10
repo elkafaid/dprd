@@ -127,7 +127,7 @@ export const Sidebar = () => {
   return (
     <aside
       className={cn(
-        "bg-slate-900 text-white h-screen flex flex-col fixed left-0 top-0 z-20 transition-all duration-300 ease-in-out overflow-hidden border-r border-slate-800",
+        "bg-slate-900 text-white inset-y-0 fixed left-0 flex flex-col z-20 transition-all duration-300 ease-in-out overflow-hidden border-r border-slate-800",
         isSidebarCollapsed ? "w-[80px]" : "w-[260px]"
       )}
     >
@@ -144,8 +144,8 @@ export const Sidebar = () => {
         </div>
       </div>
 
-      <div className="p-4 flex-1 overflow-y-auto [flex-1 overflow-y-auto::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
+      <div className="p-4 flex-1 overflow-y-auto [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+
 
 
         <div className="mb-6">
