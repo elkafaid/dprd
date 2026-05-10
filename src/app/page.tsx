@@ -214,8 +214,8 @@ export default function LandingPage() {
 
         {/* 3. DYNAMIC METRIC CARDS */}
         <section>
-          <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-            <PieChart className="w-6 h-6 text-blue-600" /> Transparansi Keuangan
+          <h2 className="text-lg md:text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+            <PieChart className="w-5 h-5 md:w-6 md:h-6 text-blue-600" /> Transparansi Keuangan
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
            <div className="bg-white p-4 md:p-6 rounded-xl md:rounded-2xl shadow-sm border border-slate-100 flex flex-col hover:shadow-md transition-shadow">
@@ -266,8 +266,8 @@ export default function LandingPage() {
           <div className="space-y-12">
             {/* 4. "PANEL ASPIRASI" MODULE */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-                <Search className="w-6 h-6 text-blue-600" /> Panel Aspirasi
+              <h2 className="text-lg md:text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                <Search className="w-5 h-5 md:w-6 md:h-6 text-blue-600" /> Panel Aspirasi
               </h2>
             </section>
             <section className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 relative mt-0">
@@ -506,8 +506,8 @@ export default function LandingPage() {
         {/* 7. BERITA & PUBLIKASI */}
         <section className="space-y-6">
            <div className="flex items-center gap-3 mb-6">
-              <FileText className="w-6 h-6 text-blue-600" />
-              <h2 className="text-2xl font-bold text-slate-800">Berita & Publikasi</h2>
+              <FileText className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
+              <h2 className="text-lg md:text-xl font-bold text-slate-800">Berita & Publikasi</h2>
            </div>
 
            {sortedBerita.length === 0 ? (
