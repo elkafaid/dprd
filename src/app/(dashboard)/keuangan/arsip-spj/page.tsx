@@ -113,7 +113,7 @@ export default function ArsipSPJPage() {
                   <td className="px-4 py-3 text-right font-medium">{formatCurrency(item.totalBiaya)}</td>
                   <td className="px-4 py-3 text-center">
                     <span className={`px-2 py-1 text-xs rounded-full \${
-                      item.status === 'Disetujui' ? 'bg-emerald-100 text-emerald-700' :
+                      item.status === 'Disetujui' ? 'bg-blue-100 text-blue-700' :
                       item.status === 'Menunggu Verifikasi' ? 'bg-amber-100 text-amber-700' :
                       'bg-slate-100 text-slate-700'
                     }`}>
@@ -132,7 +132,7 @@ export default function ArsipSPJPage() {
                       )}
                       {item.status === 'Menunggu Verifikasi' && (
                          <>
-                           <Button variant="outline" size="icon" className="h-8 w-8 text-emerald-600" title="Setujui" onClick={() => updateSPJStatus(item.id, 'Disetujui')}>
+                           <Button variant="outline" size="icon" className="h-8 w-8 text-blue-600" title="Setujui" onClick={() => updateSPJStatus(item.id, 'Disetujui')}>
                              <Check className="h-4 w-4" />
                            </Button>
                            <Button variant="outline" size="icon" className="h-8 w-8 text-rose-600" title="Tolak" onClick={() => updateSPJStatus(item.id, 'Draft')}>

@@ -44,12 +44,12 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-gradient-to-r from-emerald-600 to-teal-800 rounded-xl p-8 text-white shadow-lg flex items-center justify-between overflow-hidden relative">
+      <div className="bg-gradient-to-r from-blue-600 to-teal-800 rounded-xl p-8 text-white shadow-lg flex items-center justify-between overflow-hidden relative">
         <div className="relative z-10 space-y-2">
           <h2 className="text-3xl font-bold tracking-tight">
             Selamat datang Admin DPRD Kab. Mojokerto
           </h2>
-          <p className="text-emerald-50 text-lg max-w-xl">
+          <p className="text-blue-50 text-lg max-w-xl">
             Sistem Informasi Manajemen Terpadu untuk mengelola administrasi, keuangan, dan aspirasi masyarakat dengan transparan dan efisien.
           </p>
         </div>
@@ -83,7 +83,7 @@ export default function Dashboard() {
             <CardTitle className="text-sm font-medium text-slate-500">
               Total Register Masuk
             </CardTitle>
-            <div className="w-8 h-8 rounded bg-emerald-600 flex items-center justify-center"><ArrowDownToLine className="h-4 w-4 text-white" /></div>
+            <div className="w-8 h-8 rounded bg-blue-600 flex items-center justify-center"><ArrowDownToLine className="h-4 w-4 text-white" /></div>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-slate-900">{formatCurrency(totalMasuk)}</div>
@@ -174,7 +174,7 @@ export default function Dashboard() {
                 .map((item) => (
                 <div key={item.id + item.type} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className={`w-9 h-9 rounded-full flex items-center justify-center \${item.type === 'masuk' ? 'bg-emerald-50 text-emerald-500' : 'bg-rose-50 text-rose-500'}`}>
+                    <div className={`w-9 h-9 rounded-full flex items-center justify-center \${item.type === 'masuk' ? 'bg-blue-50 text-blue-500' : 'bg-rose-50 text-rose-500'}`}>
                       {item.type === 'masuk' ? <ArrowDownToLine className="w-4 h-4" /> : <ArrowUpFromLine className="w-4 h-4" />}
                     </div>
                     <div>
@@ -182,7 +182,7 @@ export default function Dashboard() {
                       <p className="text-xs text-slate-500">{item.tanggal}</p>
                     </div>
                   </div>
-                  <div className={`font-medium text-sm \${item.type === 'masuk' ? 'text-emerald-600' : 'text-rose-600'}`}>
+                  <div className={`font-medium text-sm \${item.type === 'masuk' ? 'text-blue-600' : 'text-rose-600'}`}>
                     {item.type === 'masuk' ? '+' : '-'}{formatCurrency(item.jumlah)}
                   </div>
                 </div>
@@ -247,7 +247,7 @@ export default function Dashboard() {
           <CardContent>
             <div className="grid grid-cols-2 gap-4">
               <button className="p-4 border rounded-lg hover:bg-slate-50 transition-colors text-left flex flex-col items-start gap-2">
-                 <ArrowDownToLine className="w-6 h-6 text-emerald-500" />
+                 <ArrowDownToLine className="w-6 h-6 text-blue-500" />
                  <span className="font-medium text-slate-900 text-sm">Tambah Register Masuk</span>
               </button>
               <button className="p-4 border rounded-lg hover:bg-slate-50 transition-colors text-left flex flex-col items-start gap-2">
@@ -267,7 +267,7 @@ export default function Dashboard() {
                {registerMasuk.slice(0,2).map(r => (
                   <div key={r.id} className="flex justify-between items-center text-sm border-b pb-2">
                     <span>{r.nomorRegister} - {r.uraian}</span>
-                    <span className="text-emerald-600 font-medium">{formatCurrency(r.jumlah)}</span>
+                    <span className="text-blue-600 font-medium">{formatCurrency(r.jumlah)}</span>
                   </div>
                ))}
                {registerKeluar.slice(0,2).map(r => (

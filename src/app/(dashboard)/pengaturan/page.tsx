@@ -73,7 +73,7 @@ export default function PengaturanPage() {
                 Simpan Pengaturan
               </Button>
               {isSaved && (
-                <span className="text-sm text-emerald-600 flex items-center gap-1 font-medium">
+                <span className="text-sm text-blue-600 flex items-center gap-1 font-medium">
                   <CheckCircle2 className="w-4 h-4" />
                   Berhasil disimpan
                 </span>

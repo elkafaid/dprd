@@ -92,6 +92,21 @@ export type Pokir = {
   estimasiAnggaran: number;
 };
 
+export type CarouselSlide = {
+  id: string;
+  imageUrl: string;
+  textLine1: string;
+  textLine2: string;
+};
+
+export type Berita = {
+  id: string;
+  title: string;
+  content: string;
+  imageUrl: string;
+  date: string;
+};
+
 export type AppState = {
   registerMasuk: RegisterMasuk[];
   registerKeluar: RegisterKeluar[];
@@ -105,6 +120,8 @@ export type AppState = {
   agenda: Agenda[];
   pengaduan: Pengaduan[];
   pokir: Pokir[];
+  carousel: CarouselSlide[];
+  berita: Berita[];
 
   isAuthenticated: boolean;
   user: User | null;
@@ -144,6 +161,15 @@ export type AppState = {
   addPengaduan: (data: Omit<Pengaduan, 'id'>) => void;
   updatePengaduanStatus: (id: string, status: Pengaduan['status']) => void;
   addPokir: (data: Omit<Pokir, 'id'>) => void;
+
+  // CMS Actions
+  addCarouselSlide: (data: Omit<CarouselSlide, 'id'>) => void;
+  updateCarouselSlide: (id: string, data: Partial<CarouselSlide>) => void;
+  deleteCarouselSlide: (id: string) => void;
+
+  addBerita: (data: Omit<Berita, 'id'>) => void;
+  updateBerita: (id: string, data: Partial<Berita>) => void;
+  deleteBerita: (id: string) => void;
 
   updateSettings: (settings: AppState['settings']) => void;
 };
@@ -195,6 +221,18 @@ const initialPokir: Pokir[] = [
   { id: '1', pengusul: 'Budi Santoso', dapil: 'Dapil 1', programUsulan: 'Perbaikan Jalan Desa', estimasiAnggaran: 200000000 }
 ];
 
+const initialCarousel: CarouselSlide[] = [
+  { id: '1', imageUrl: 'https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?auto=format&fit=crop&q=80&w=1920', textLine1: 'Transparansi Anggaran', textLine2: 'Mewujudkan DPRD Kab. Mojokerto yang Bersih dan Akuntabel' },
+  { id: '2', imageUrl: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1920', textLine1: 'Sinergi Pembangunan', textLine2: 'Bersama Rakyat Membangun Infrastruktur Daerah yang Berkelanjutan' },
+  { id: '3', imageUrl: 'https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?auto=format&fit=crop&q=80&w=1920', textLine1: 'Pelayanan Publik', textLine2: 'Mendengarkan dan Menindaklanjuti Setiap Aspirasi Masyarakat' },
+];
+
+const initialBerita: Berita[] = [
+  { id: '1', title: 'Rapat Paripurna RAPBD 2024', content: 'DPRD Kabupaten Mojokerto menggelar Rapat Paripurna penyampaian RAPBD 2024...', imageUrl: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=800', date: '2023-11-10' },
+  { id: '2', title: 'Kunjungan Kerja ke Desa ABC', content: 'Anggota DPRD melakukan peninjauan proyek perbaikan jalan desa...', imageUrl: 'https://images.unsplash.com/photo-1584483766114-2cea6facdf57?auto=format&fit=crop&q=80&w=800', date: '2023-11-12' },
+  { id: '3', title: 'Sosialisasi Perda Ketertiban', content: 'Kegiatan sosialisasi perda ketertiban umum berlangsung di Balai Desa...', imageUrl: 'https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?auto=format&fit=crop&q=80&w=800', date: '2023-11-15' }
+];
+
 export const useStore = create<AppState>()(
   persist(
     (set) => ({
@@ -209,6 +247,8 @@ export const useStore = create<AppState>()(
       agenda: initialAgenda,
       pengaduan: initialPengaduan,
       pokir: initialPokir,
+      carousel: initialCarousel,
+      berita: initialBerita,
 
       isAuthenticated: false,
       user: null,
@@ -245,6 +285,14 @@ export const useStore = create<AppState>()(
       addPengaduan: (data) => set((state) => ({ pengaduan: [...state.pengaduan, { ...data, id: Math.random().toString(36).substr(2, 9) }] })),
       updatePengaduanStatus: (id, status) => set((state) => ({ pengaduan: state.pengaduan.map((p) => p.id === id ? { ...p, status } : p) })),
       addPokir: (data) => set((state) => ({ pokir: [...state.pokir, { ...data, id: Math.random().toString(36).substr(2, 9) }] })),
+
+      addCarouselSlide: (data) => set((state) => ({ carousel: [...state.carousel, { ...data, id: Math.random().toString(36).substr(2, 9) }] })),
+      updateCarouselSlide: (id, data) => set((state) => ({ carousel: state.carousel.map((c) => c.id === id ? { ...c, ...data } : c) })),
+      deleteCarouselSlide: (id) => set((state) => ({ carousel: state.carousel.filter((c) => c.id !== id) })),
+
+      addBerita: (data) => set((state) => ({ berita: [...state.berita, { ...data, id: Math.random().toString(36).substr(2, 9) }] })),
+      updateBerita: (id, data) => set((state) => ({ berita: state.berita.map((b) => b.id === id ? { ...b, ...data } : b) })),
+      deleteBerita: (id) => set((state) => ({ berita: state.berita.filter((b) => b.id !== id) })),
 
       updateSettings: (newSettings) => set({ settings: newSettings }),
     }),

@@ -50,7 +50,7 @@ export default function LaporanKeuanganPage() {
              <CardTitle className="text-sm font-medium text-slate-500">Total Transaksi Masuk</CardTitle>
            </CardHeader>
            <CardContent>
-             <div className="text-2xl font-bold text-emerald-600">{filteredMasuk.length} Trx</div>
+             <div className="text-2xl font-bold text-blue-600">{filteredMasuk.length} Trx</div>
            </CardContent>
          </Card>
          <Card className="bg-white shadow-sm border-slate-200">
@@ -103,12 +103,12 @@ export default function LaporanKeuanganPage() {
                   <tr key={idx} className="border-b">
                     <td className="px-4 py-3">{item.tanggal}</td>
                     <td className="px-4 py-3">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${item.type === 'Masuk' ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}`}>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${item.type === 'Masuk' ? 'bg-blue-100 text-blue-700' : 'bg-rose-100 text-rose-700'}`}>
                         {item.type}
                       </span>
                     </td>
                     <td className="px-4 py-3">{item.uraian}</td>
-                    <td className={`px-4 py-3 text-right font-medium ${item.type === 'Masuk' ? 'text-emerald-600' : 'text-rose-600'}`}>
+                    <td className={`px-4 py-3 text-right font-medium ${item.type === 'Masuk' ? 'text-blue-600' : 'text-rose-600'}`}>
                       {item.type === 'Masuk' ? '+' : '-'}{formatCurrency(item.jumlah)}
                     </td>
                   </tr>
