@@ -1,0 +1,9 @@
+<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.15" stroke-width="2">
+    <ellipse cx="15" cy="15" rx="10" ry="15" transform="rotate(45 15 15)" />
+    <ellipse cx="45" cy="15" rx="10" ry="15" transform="rotate(-45 45 15)" />
+    <ellipse cx="15" cy="45" rx="10" ry="15" transform="rotate(-45 15 45)" />
+    <ellipse cx="45" cy="45" rx="10" ry="15" transform="rotate(45 45 45)" />
+    <polygon points="30,20 40,30 30,40 20,30" />
+  </g>
+</svg>
