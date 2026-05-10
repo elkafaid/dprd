@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   Home,
@@ -72,6 +72,7 @@ const SidebarGroup = ({
   children,
   activeGroup = false,
   isCollapsed = false,
+  href,
 }: {
   title: string;
   icon?: any;
@@ -79,17 +80,26 @@ const SidebarGroup = ({
   children: React.ReactNode;
   activeGroup?: boolean;
   isCollapsed?: boolean;
+  href?: string;
 }) => {
   const [expanded, setExpanded] = useState(defaultExpanded || activeGroup);
+  const router = useRouter();
 
   if (isCollapsed) {
     return <div className="mb-2">{children}</div>;
   }
 
+  const handleClick = () => {
+    setExpanded(!expanded);
+    if (href) {
+      router.push(href);
+    }
+  };
+
   return (
     <div className="mb-2">
       <button
-        onClick={() => setExpanded(!expanded)}
+        onClick={handleClick}
         className={cn(
           "w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-sm transition-colors",
           activeGroup
@@ -145,9 +155,6 @@ export const Sidebar = () => {
       </div>
 
       <div className="p-4 flex-1 overflow-y-auto [flex-1 overflow-y-auto::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-
-
         <div className="mb-6">
           {!isSidebarCollapsed && (
             <p className="px-4 text-xs font-semibold text-slate-500 mb-2 uppercase tracking-wider">
@@ -223,6 +230,7 @@ export const Sidebar = () => {
             defaultExpanded={pathname.startsWith("/keuangan")}
             activeGroup={pathname.startsWith("/keuangan")}
             isCollapsed={isSidebarCollapsed}
+            href="/keuangan/dashboard-keuangan"
           >
             <SidebarItem
               icon={ArrowDownToLine}
@@ -243,13 +251,6 @@ export const Sidebar = () => {
               label="Arsip SPJ"
               href="/keuangan/arsip-spj"
               active={pathname === "/keuangan/arsip-spj"}
-              isCollapsed={isSidebarCollapsed}
-            />
-            <SidebarItem
-              icon={BarChart}
-              label="Dashboard Keuangan"
-              href="/keuangan/dashboard-keuangan"
-              active={pathname === "/keuangan/dashboard-keuangan"}
               isCollapsed={isSidebarCollapsed}
             />
           </SidebarGroup>

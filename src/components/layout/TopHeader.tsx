@@ -1,6 +1,7 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 import { Bell, User } from "lucide-react";
 import { useStore } from "@/store/useStore";
 import {
@@ -15,7 +16,13 @@ import { Button } from "@/components/ui/button";
 
 export const TopHeader = () => {
   const pathname = usePathname();
-  const settings = useStore((state) => state.settings);
+  const router = useRouter();
+  const { settings, logout } = useStore();
+
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
 
   // Generate breadcrumbs from pathname
   const paths = pathname.split("/").filter(Boolean);
@@ -72,12 +79,16 @@ export const TopHeader = () => {
               </div>
             </Button>} />
           <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuLabel>Akun Saya</DropdownMenuLabel>
+            <div className="px-1.5 py-1 text-xs font-medium text-muted-foreground">Akun Saya</div>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profil</DropdownMenuItem>
-            <DropdownMenuItem>Pengaturan</DropdownMenuItem>
+            <Link href="/master-data/akun" className="w-full">
+              <DropdownMenuItem>Profil</DropdownMenuItem>
+            </Link>
+            <Link href="/pengaturan" className="w-full">
+              <DropdownMenuItem>Pengaturan</DropdownMenuItem>
+            </Link>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-red-600">Keluar</DropdownMenuItem>
+            <DropdownMenuItem className="text-red-600" onClick={handleLogout}>Keluar</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
