@@ -45,6 +45,17 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
+      {/* Mobile Greeting (Moved to very top on mobile) */}
+      <div className="md:hidden space-y-2 mb-4 bg-gradient-to-r from-blue-600 to-teal-800 rounded-xl p-6 text-white shadow-lg overflow-hidden relative">
+        <h2 className="text-xl font-bold tracking-tight relative z-10">
+          Selamat datang Admin
+        </h2>
+        <p className="text-blue-50 text-sm relative z-10">
+          Sistem Informasi Manajemen Terpadu DPRD Kab. Mojokerto
+        </p>
+        <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl -mr-6 -mt-6"></div>
+      </div>
+
       {/* Mobile Quick Actions */}
       <div className="md:hidden grid grid-cols-4 gap-2 mb-2">
         <Link href="/tata-usaha/surat-masuk" className="flex flex-col items-center gap-2 p-3 bg-white rounded-xl shadow-sm border border-slate-100 hover:bg-slate-50 transition-colors">
@@ -73,7 +84,7 @@ export default function Dashboard() {
         </Link>
       </div>
 
-      <div className="bg-gradient-to-r from-blue-600 to-teal-800 rounded-xl p-8 text-white shadow-lg flex items-center justify-between overflow-hidden relative">
+      <div className="hidden md:flex bg-gradient-to-r from-blue-600 to-teal-800 rounded-xl p-8 text-white shadow-lg items-center justify-between overflow-hidden relative">
         <div className="relative z-10 space-y-2">
           <h2 className="text-3xl font-bold tracking-tight">
             Selamat datang Admin DPRD Kab. Mojokerto
@@ -191,7 +202,7 @@ export default function Dashboard() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4 bg-white shadow-sm border-slate-200">
+        <Card className="md:col-span-2 lg:col-span-4 bg-white shadow-sm border-slate-200">
           <CardHeader>
             <CardTitle className="text-lg font-semibold text-slate-900">Riwayat Transaksi Terbaru</CardTitle>
           </CardHeader>
@@ -225,11 +236,11 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card className="col-span-3 bg-white shadow-sm border-slate-200">
+        <Card className="md:col-span-2 lg:col-span-3 bg-white shadow-sm border-slate-200">
           <CardHeader>
             <CardTitle className="text-lg font-semibold text-slate-900">Pengeluaran per Kategori</CardTitle>
           </CardHeader>
-          <CardContent className="h-[350px]">
+          <CardContent className="w-full h-[350px] min-h-[300px]">
             {groupedData.length > 0 ? (
               <div className="relative w-full h-full">
                 <ResponsiveContainer width="100%" height="100%">

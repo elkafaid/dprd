@@ -113,14 +113,23 @@ export default function CarouselManagementPage() {
             </DialogHeader>
             <form onSubmit={handleAdd} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="imageUpload">Upload Gambar</Label>
-                <Input
-                  id="imageUpload"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileUpload}
-                  disabled={isUploading}
-                />
+                <Label>Upload Gambar</Label>
+                <div>
+                  <Label
+                    htmlFor="imageUpload"
+                    className="cursor-pointer inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 h-10 px-4 py-2"
+                  >
+                    Pilih File Gambar
+                  </Label>
+                  <Input
+                    id="imageUpload"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileUpload}
+                    disabled={isUploading}
+                    className="hidden"
+                  />
+                </div>
                 {isUploading && <p className="text-xs text-blue-500">Mengunggah...</p>}
                 {imageUrl && (
                   <div className="mt-2 text-xs text-green-600 break-all">
@@ -193,14 +202,23 @@ export default function CarouselManagementPage() {
           </DialogHeader>
           <form onSubmit={handleUpdate} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="edit-imageUpload">Upload Gambar Baru</Label>
-              <Input
-                id="edit-imageUpload"
-                type="file"
-                accept="image/*"
-                onChange={handleFileUpload}
-                disabled={isUploading}
-              />
+              <Label>Upload Gambar Baru</Label>
+              <div>
+                <Label
+                  htmlFor="edit-imageUpload"
+                  className="cursor-pointer inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 h-10 px-4 py-2"
+                >
+                  Pilih File Gambar
+                </Label>
+                <Input
+                  id="edit-imageUpload"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                  disabled={isUploading}
+                  className="hidden"
+                />
+              </div>
               {isUploading && <p className="text-xs text-blue-500">Mengunggah...</p>}
               {imageUrl && (
                 <div className="mt-2 text-xs text-green-600 break-all">

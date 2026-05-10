@@ -16,8 +16,8 @@ import {
 import dynamic from 'next/dynamic';
 
 // Import react-quill dynamically to avoid SSR issues
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
-import 'react-quill/dist/quill.snow.css';
+const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
+import 'react-quill-new/dist/quill.snow.css';
 
 export default function BeritaManagementPage() {
   const { berita, addBerita, updateBerita, deleteBerita } = useStore();
@@ -142,14 +142,23 @@ export default function BeritaManagementPage() {
                 </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="imageUpload">Upload Gambar Thumbnail</Label>
-                <Input
-                  id="imageUpload"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileUpload}
-                  disabled={isUploading}
-                />
+                <Label>Upload Gambar Thumbnail</Label>
+                <div>
+                  <Label
+                    htmlFor="imageUpload"
+                    className="cursor-pointer inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 h-10 px-4 py-2"
+                  >
+                    Pilih File Gambar
+                  </Label>
+                  <Input
+                    id="imageUpload"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileUpload}
+                    disabled={isUploading}
+                    className="hidden"
+                  />
+                </div>
                 {isUploading && <p className="text-xs text-blue-500">Mengunggah...</p>}
                 {imageUrl && (
                   <div className="mt-2 text-xs text-green-600 break-all">
@@ -239,14 +248,23 @@ export default function BeritaManagementPage() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="edit-imageUpload">Upload Gambar Thumbnail Baru</Label>
-              <Input
-                id="edit-imageUpload"
-                type="file"
-                accept="image/*"
-                onChange={handleFileUpload}
-                disabled={isUploading}
-              />
+              <Label>Upload Gambar Thumbnail Baru</Label>
+              <div>
+                <Label
+                  htmlFor="edit-imageUpload"
+                  className="cursor-pointer inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-blue-600 text-white hover:bg-blue-700 h-10 px-4 py-2"
+                >
+                  Pilih File Gambar
+                </Label>
+                <Input
+                  id="edit-imageUpload"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                  disabled={isUploading}
+                  className="hidden"
+                />
+              </div>
               {isUploading && <p className="text-xs text-blue-500">Mengunggah...</p>}
               {imageUrl && (
                 <div className="mt-2 text-xs text-green-600 break-all">

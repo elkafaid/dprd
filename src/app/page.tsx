@@ -136,7 +136,7 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       {/* 1. NAVBAR */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b-[3px] border-blue-900 shadow-sm h-16 flex items-center px-4 md:px-8">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b-[3px] border-blue-900 shadow-sm h-16 flex items-center px-4 md:px-8 lg:px-[15%]">
         <div className="flex items-center gap-3 flex-1">
           <div className="w-8 h-8 md:w-10 md:h-10 relative">
              <Image src="/logo-mojokerto.png" alt="Logo" fill className="object-contain" />
@@ -144,20 +144,30 @@ export default function LandingPage() {
           <span className="font-bold text-[12px] md:text-base text-slate-800 tracking-tight">DPRD KAB. MOJOKERTO</span>
         </div>
         <div className="flex-none">
-          <Button
-            variant="outline"
-            className="border-blue-700 text-blue-700 hover:bg-blue-50 text-[10px] md:text-sm h-8 md:h-9"
-            onClick={() => setIsLoginModalOpen(true)}
-          >
-            Masuk
-          </Button>
+          {useStore.getState().isAuthenticated ? (
+            <Link href="/dashboard">
+              <Button
+                className="bg-blue-600 text-white hover:bg-blue-700 text-[10px] md:text-sm h-8 md:h-9"
+              >
+                Dashboard
+              </Button>
+            </Link>
+          ) : (
+            <Button
+              variant="outline"
+              className="border-blue-700 text-blue-700 hover:bg-blue-50 text-[10px] md:text-sm h-8 md:h-9"
+              onClick={() => setIsLoginModalOpen(true)}
+            >
+              Masuk
+            </Button>
+          )}
         </div>
       </nav>
 
       <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
 
       {/* 2. HERO SECTION & TEXTURE LAYERING */}
-      <section className="relative w-full aspect-[2/1] md:aspect-[4/1] mt-16 bg-slate-900 group">
+      <section className="relative w-full aspect-[2/1] md:aspect-[4/1] mt-16 bg-slate-900 group lg:mx-[15%] lg:w-[70%]">
         <div
           id="hero-carousel"
           className="flex w-full h-full overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar"
@@ -210,7 +220,7 @@ export default function LandingPage() {
       </section>
 
       {/* Main Content Area */}
-      <main className="flex-1 w-full max-w-6xl mx-auto px-4 md:px-8 py-8 md:py-16 space-y-16">
+      <main className="flex-1 w-full max-w-6xl mx-auto px-4 md:px-8 lg:px-[15%] py-8 md:py-16 space-y-16">
 
         {/* 3. DYNAMIC METRIC CARDS */}
         <section>
@@ -515,10 +525,10 @@ export default function LandingPage() {
                 <p className="text-slate-500">Belum ada berita yang dipublikasikan.</p>
              </div>
            ) : (
-             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+             <div className="grid grid-cols-2 gap-4 md:gap-6">
                 {/* Hero News - Full width */}
                 {heroNews && (
-                  <Link href={`/berita/${heroNews.id}`} className="col-span-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-md transition-all flex flex-col md:flex-row min-h-[300px]">
+                  <Link href={`/berita/${heroNews.id}`} className="col-span-2 bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-md transition-all flex flex-col md:flex-row min-h-[300px]">
                     <div className="relative h-64 md:h-auto md:w-1/2 lg:w-3/5 bg-slate-100 overflow-hidden">
                        {heroNews.imageUrl ? (
                           <Image src={heroNews.imageUrl} alt={heroNews.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -546,7 +556,7 @@ export default function LandingPage() {
 
                 {/* Grid News - 2 Columns */}
                 {gridNews.map((item) => (
-                   <Link href={`/berita/${item.id}`} key={item.id} className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-md transition-all flex flex-col">
+                   <Link href={`/berita/${item.id}`} key={item.id} className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-md transition-all flex flex-col col-span-1">
                       <div className="relative h-48 bg-slate-100 overflow-hidden">
                          {item.imageUrl ? (
                             <Image src={item.imageUrl} alt={item.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -580,7 +590,7 @@ export default function LandingPage() {
 
       </main>
 
-      <footer className="bg-slate-900 text-slate-400 py-8 text-center text-[11px] md:text-sm border-t border-slate-800">
+      <footer className="bg-slate-900 text-slate-400 py-8 text-center text-[11px] md:text-sm border-t border-slate-800 lg:px-[15%]">
         <p>&copy; 2026 elkafa.com. All rights reserved.</p>
         <p className="mt-1">Portal Transparansi dan Aspirasi Publik.</p>
       </footer>

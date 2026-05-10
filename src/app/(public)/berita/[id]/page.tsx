@@ -44,7 +44,7 @@ export default function SingleBeritaPage() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       {/* 1. NAVBAR (Re-used for simplicity without modal state) */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b-[3px] border-blue-900 shadow-sm h-16 flex items-center px-4 md:px-8">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b-[3px] border-blue-900 shadow-sm h-16 flex items-center px-4 md:px-8 lg:px-[15%]">
         <div className="flex items-center gap-3 flex-1">
           <Link href="/" className="flex items-center gap-3">
             <div className="w-8 h-8 md:w-10 md:h-10 relative">
@@ -53,16 +53,35 @@ export default function SingleBeritaPage() {
             <span className="font-bold text-[12px] md:text-base text-slate-800 tracking-tight">DPRD KAB. MOJOKERTO</span>
           </Link>
         </div>
+        <div className="flex-none">
+          {useStore.getState().isAuthenticated ? (
+            <Link href="/dashboard">
+              <Button
+                className="bg-blue-600 text-white hover:bg-blue-700 text-[10px] md:text-sm h-8 md:h-9"
+              >
+                Dashboard
+              </Button>
+            </Link>
+          ) : (
+             <Link href="/">
+               <Button
+                 variant="outline"
+                 className="border-blue-700 text-blue-700 hover:bg-blue-50 text-[10px] md:text-sm h-8 md:h-9"
+               >
+                 Masuk
+               </Button>
+             </Link>
+          )}
+        </div>
       </nav>
 
       {/* Main Content */}
-      <main className="flex-1 w-full max-w-4xl mx-auto px-4 md:px-8 pt-24 pb-16">
-        <Button onClick={() => router.push("/")} variant="ghost" className="mb-8 text-slate-500 hover:text-slate-800">
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Kembali
-        </Button>
+      <main className="flex-1 w-full max-w-4xl mx-auto px-0 md:px-8 lg:px-[15%] pt-24 pb-16">
+        <div className="px-4 md:px-0 mb-4 md:mb-8 text-xs text-slate-500">
+          <Link href="/" className="hover:text-blue-600">Beranda</Link> / <Link href="/" className="hover:text-blue-600">Berita</Link> / <span className="text-slate-800">{currentPost.title}</span>
+        </div>
 
-        <article className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden mb-16">
+        <article className="bg-white md:rounded-3xl md:shadow-sm md:border md:border-slate-100 overflow-hidden mb-16">
           <div className="relative w-full aspect-video bg-slate-100">
             {currentPost.imageUrl ? (
               <Image src={currentPost.imageUrl} alt={currentPost.title} fill className="object-cover" priority />
@@ -100,10 +119,10 @@ export default function SingleBeritaPage() {
                   <p className="text-slate-500">Belum ada berita lain yang dipublikasikan.</p>
                </div>
              ) : (
-               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+               <div className="grid grid-cols-2 gap-4 md:gap-6">
                   {/* Hero News - Full width */}
                   {heroNews && (
-                    <Link href={`/berita/${heroNews.id}`} className="col-span-full bg-slate-50 rounded-2xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-md transition-all flex flex-col md:flex-row min-h-[300px]">
+                    <Link href={`/berita/${heroNews.id}`} className="col-span-2 bg-slate-50 rounded-2xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-md transition-all flex flex-col md:flex-row min-h-[300px]">
                       <div className="relative h-64 md:h-auto md:w-1/2 lg:w-3/5 bg-slate-100 overflow-hidden">
                          {heroNews.imageUrl ? (
                             <Image src={heroNews.imageUrl} alt={heroNews.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -131,7 +150,7 @@ export default function SingleBeritaPage() {
 
                   {/* Grid News - 2 Columns */}
                   {gridNews.map((item) => (
-                     <Link href={`/berita/${item.id}`} key={item.id} className="bg-slate-50 rounded-xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-md transition-all flex flex-col">
+                     <Link href={`/berita/${item.id}`} key={item.id} className="bg-slate-50 rounded-xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-md transition-all flex flex-col col-span-1">
                         <div className="relative h-48 bg-slate-100 overflow-hidden">
                            {item.imageUrl ? (
                               <Image src={item.imageUrl} alt={item.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -160,7 +179,7 @@ export default function SingleBeritaPage() {
         </div>
       </div>
 
-      <footer className="bg-slate-900 text-slate-400 py-8 text-center text-[11px] md:text-sm border-t border-slate-800 mt-auto">
+      <footer className="bg-slate-900 text-slate-400 py-8 text-center text-[11px] md:text-sm border-t border-slate-800 lg:px-[15%] mt-auto">
         <p>&copy; 2026 elkafa.com. All rights reserved.</p>
         <p className="mt-1">Portal Transparansi dan Aspirasi Publik.</p>
       </footer>
