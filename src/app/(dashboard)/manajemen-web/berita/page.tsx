@@ -13,6 +13,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import dynamic from 'next/dynamic';
+
+// Import react-quill dynamically to avoid SSR issues
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+import 'react-quill/dist/quill.snow.css';
 
 export default function BeritaManagementPage() {
   const { berita, addBerita, updateBerita, deleteBerita } = useStore();
@@ -39,6 +44,36 @@ export default function BeritaManagementPage() {
     addBerita({ title, content, imageUrl, date });
     setIsAddOpen(false);
     resetForm();
+  };
+
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+    const file = e.target.files[0];
+
+    setIsUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        setImageUrl(data.url);
+      } else {
+        alert(data.error || 'Failed to upload file');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Error uploading file');
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   const handleEdit = (item: Berita) => {
@@ -107,25 +142,33 @@ export default function BeritaManagementPage() {
                 </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="imageUrl">URL Gambar Thumbnail</Label>
+                <Label htmlFor="imageUpload">Upload Gambar Thumbnail</Label>
                 <Input
-                  id="imageUrl"
-                  value={imageUrl}
-                  onChange={(e) => setImageUrl(e.target.value)}
-                  placeholder="https://example.com/image.jpg"
-                  required
+                  id="imageUpload"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                  disabled={isUploading}
                 />
+                {isUploading && <p className="text-xs text-blue-500">Mengunggah...</p>}
+                {imageUrl && (
+                  <div className="mt-2 text-xs text-green-600 break-all">
+                    Gambar tersimpan: {imageUrl}
+                  </div>
+                )}
+                <input type="hidden" value={imageUrl} required />
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 pb-12">
                 <Label htmlFor="content">Isi Berita</Label>
-                <textarea
-                  id="content"
-                  className="flex min-h-[150px] w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                  placeholder="Tulis isi berita di sini..."
-                  required
-                />
+                <div className="bg-white rounded-md">
+                  <ReactQuill
+                    theme="snow"
+                    value={content}
+                    onChange={setContent}
+                    placeholder="Tulis isi berita di sini..."
+                    className="h-48 mb-4"
+                  />
+                </div>
               </div>
               <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">Simpan Berita</Button>
             </form>
@@ -151,7 +194,7 @@ export default function BeritaManagementPage() {
                 {item.date}
               </div>
               <h3 className="font-bold text-slate-800 mb-2 line-clamp-2">{item.title}</h3>
-              <p className="text-slate-600 text-sm line-clamp-3 mb-4 flex-1">{item.content}</p>
+              <div className="text-slate-600 text-sm line-clamp-3 mb-4 flex-1" dangerouslySetInnerHTML={{ __html: item.content }} />
 
               <div className="flex justify-end gap-2 pt-4 border-t border-slate-100 mt-auto">
                 <Button variant="outline" size="sm" onClick={() => handleEdit(item)} className="text-blue-600 border-blue-200 hover:bg-blue-50">
@@ -196,23 +239,32 @@ export default function BeritaManagementPage() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="edit-imageUrl">URL Gambar Thumbnail</Label>
+              <Label htmlFor="edit-imageUpload">Upload Gambar Thumbnail Baru</Label>
               <Input
-                id="edit-imageUrl"
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
-                required
+                id="edit-imageUpload"
+                type="file"
+                accept="image/*"
+                onChange={handleFileUpload}
+                disabled={isUploading}
               />
+              {isUploading && <p className="text-xs text-blue-500">Mengunggah...</p>}
+              {imageUrl && (
+                <div className="mt-2 text-xs text-green-600 break-all">
+                  Gambar tersimpan: {imageUrl}
+                </div>
+              )}
+              <input type="hidden" value={imageUrl} required />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 pb-12">
               <Label htmlFor="edit-content">Isi Berita</Label>
-              <textarea
-                id="edit-content"
-                className="flex min-h-[150px] w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                required
-              />
+              <div className="bg-white rounded-md">
+                <ReactQuill
+                  theme="snow"
+                  value={content}
+                  onChange={setContent}
+                  className="h-48 mb-4"
+                />
+              </div>
             </div>
             <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">Update Berita</Button>
           </form>

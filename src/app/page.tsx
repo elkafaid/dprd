@@ -19,15 +19,76 @@ export default function LandingPage() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
-  const { carousel, jenisAnggaran, registerMasuk, registerKeluar, agenda, berita } = useStore();
+  const { carousel, jenisAnggaran, registerMasuk, registerKeluar, agenda, berita, pengaduan, addPengaduan } = useStore();
+
+  const [formAspirasi, setFormAspirasi] = useState({
+    nama: "",
+    alamat: "",
+    masalah: "",
+  });
+
+  const [aspirasiId, setAspirasiId] = useState("");
+
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) {
+      const generateId = () => `ASP-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+      const timeoutId = setTimeout(() => {
+        setAspirasiId(generateId());
+      }, 0);
+      return () => {
+        isMounted = false;
+        clearTimeout(timeoutId);
+      };
+    }
+  }, []);
+
+  const handleSubmitAspirasi = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formAspirasi.nama || !formAspirasi.masalah) return;
+
+    addPengaduan({
+      tanggal: new Date().toISOString().split('T')[0],
+      namaPelapor: formAspirasi.nama,
+      kategori: 'Umum',
+      masalah: formAspirasi.masalah,
+      status: 'Diterima'
+    });
+
+    setFormAspirasi({
+      nama: "",
+      alamat: "",
+      masalah: "",
+    });
+    alert("Aspirasi berhasil dikirim!");
+  };
 
   useEffect(() => {
     if (carousel.length === 0) return;
     const interval = setInterval(() => {
-      setCurrentSlideIndex((prev) => (prev + 1) % carousel.length);
+      setCurrentSlideIndex((prev) => {
+        const nextIndex = (prev + 1) % carousel.length;
+        const carouselContainer = document.getElementById('hero-carousel');
+        if (carouselContainer) {
+          carouselContainer.scrollTo({
+            left: nextIndex * carouselContainer.clientWidth,
+            behavior: 'smooth'
+          });
+        }
+        return nextIndex;
+      });
     }, 5000);
     return () => clearInterval(interval);
   }, [carousel.length]);
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const scrollPosition = container.scrollLeft;
+    const index = Math.round(scrollPosition / container.clientWidth);
+    if (index !== currentSlideIndex) {
+      setCurrentSlideIndex(index);
+    }
+  };
 
   const handleSearchAspirasi = (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,15 +121,27 @@ export default function LandingPage() {
   // Modern government colors for the chart
   const COLORS = ['#1d4ed8', '#0ea5e9', '#0369a1', '#1e40af', '#3b82f6'];
 
+  // Process agenda for dual marquee
+  const multipliedAgenda = agenda.length > 0 && agenda.length < 6
+    ? [...agenda, ...agenda, ...agenda, ...agenda, ...agenda, ...agenda]
+    : agenda;
+  const topRowAgenda = multipliedAgenda.filter((_, i) => i % 2 === 0);
+  const bottomRowAgenda = multipliedAgenda.filter((_, i) => i % 2 !== 0);
+
+  // Process Berita
+  const sortedBerita = [...berita].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const heroNews = sortedBerita[0];
+  const gridNews = sortedBerita.slice(1, 7);
+
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       {/* 1. NAVBAR */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm h-16 flex items-center px-4 md:px-8">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b-[3px] border-blue-900 shadow-sm h-16 flex items-center px-4 md:px-8">
         <div className="flex items-center gap-3 flex-1">
           <div className="w-8 h-8 md:w-10 md:h-10 relative">
              <Image src="/logo-mojokerto.png" alt="Logo" fill className="object-contain" />
           </div>
-          <span className="font-bold text-[12px] md:text-base text-slate-800 tracking-tight">DPRD MOJOKERTO</span>
+          <span className="font-bold text-[12px] md:text-base text-slate-800 tracking-tight">DPRD KAB. MOJOKERTO</span>
         </div>
         <div className="flex-none">
           <Button
@@ -76,7 +149,7 @@ export default function LandingPage() {
             className="border-blue-700 text-blue-700 hover:bg-blue-50 text-[10px] md:text-sm h-8 md:h-9"
             onClick={() => setIsLoginModalOpen(true)}
           >
-            Login Admin
+            Masuk
           </Button>
         </div>
       </nav>
@@ -84,36 +157,52 @@ export default function LandingPage() {
       <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
 
       {/* 2. HERO SECTION & TEXTURE LAYERING */}
-      <section className="relative w-full aspect-[2/1] md:aspect-[4/1] mt-16 overflow-hidden bg-slate-900">
-        {carousel.map((slide, index) => (
-           <div
-             key={slide.id}
-             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlideIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-           >
-              <div
-                className="absolute inset-0 bg-center bg-cover"
-                style={{ backgroundImage: `url('${slide.imageUrl}')` }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent" />
+      <section className="relative w-full aspect-[2/1] md:aspect-[4/1] mt-16 bg-slate-900 group">
+        <div
+          id="hero-carousel"
+          className="flex w-full h-full overflow-x-auto snap-x snap-mandatory scrollbar-hide no-scrollbar"
+          onScroll={handleScroll}
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {carousel.map((slide, index) => (
+             <div
+               key={slide.id}
+               className="relative min-w-full h-full snap-center shrink-0"
+             >
+                <div
+                  className="absolute inset-0 bg-center bg-cover"
+                  style={{ backgroundImage: `url('${slide.imageUrl}')` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent" />
 
-              <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-12 z-20">
-                 <div className="max-w-4xl">
-                   <h1 className="text-xl md:text-4xl lg:text-5xl font-bold text-white mb-2 drop-shadow-md">
-                     {slide.textLine1}
-                   </h1>
-                   <p className="text-sm md:text-lg lg:text-xl text-blue-50 font-medium drop-shadow-md line-clamp-2">
-                     {slide.textLine2}
-                   </p>
-                 </div>
-              </div>
-           </div>
-        ))}
+                <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-12 z-20">
+                   <div className="max-w-4xl">
+                     <h1 className="text-xl md:text-4xl lg:text-5xl font-bold text-white mb-2 drop-shadow-md">
+                       {slide.textLine1}
+                     </h1>
+                     <p className="text-sm md:text-lg lg:text-xl text-blue-50 font-medium drop-shadow-md line-clamp-2">
+                       {slide.textLine2}
+                     </p>
+                   </div>
+                </div>
+             </div>
+          ))}
+        </div>
         {/* Navigation Dots */}
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
            {carousel.map((_, index) => (
              <button
                 key={index}
-                onClick={() => setCurrentSlideIndex(index)}
+                onClick={() => {
+                  const carouselContainer = document.getElementById('hero-carousel');
+                  if (carouselContainer) {
+                    carouselContainer.scrollTo({
+                      left: index * carouselContainer.clientWidth,
+                      behavior: 'smooth'
+                    });
+                  }
+                  setCurrentSlideIndex(index);
+                }}
                 className={`w-2 h-2 rounded-full transition-all ${index === currentSlideIndex ? 'bg-blue-500 w-4' : 'bg-white/50 hover:bg-white/80'}`}
              />
            ))}
@@ -124,7 +213,11 @@ export default function LandingPage() {
       <main className="flex-1 w-full max-w-6xl mx-auto px-4 md:px-8 py-8 md:py-16 space-y-16">
 
         {/* 3. DYNAMIC METRIC CARDS */}
-        <section className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+        <section>
+          <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+            <PieChart className="w-6 h-6 text-blue-600" /> Transparansi Keuangan
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
            <div className="bg-white p-4 md:p-6 rounded-xl md:rounded-2xl shadow-sm border border-slate-100 flex flex-col hover:shadow-md transition-shadow">
               <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-4">
                  <div className="w-8 h-8 md:w-10 md:h-10 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 shrink-0">
@@ -164,17 +257,67 @@ export default function LandingPage() {
               </div>
               <p className="text-[14px] md:text-2xl font-bold text-slate-800 break-words">{formatRupiah(sisaAnggaran)}</p>
            </div>
+          </div>
         </section>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
 
           {/* Left Column */}
           <div className="space-y-12">
-            {/* 4. "LACAK ASPIRASI" MODULE */}
-            <section className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 relative">
-              <div className="flex items-center gap-3 mb-6">
+            {/* 4. "PANEL ASPIRASI" MODULE */}
+            <section>
+              <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                <Search className="w-6 h-6 text-blue-600" /> Panel Aspirasi
+              </h2>
+            </section>
+            <section className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 relative mt-0">
+              <h3 className="text-lg font-bold text-slate-800 mb-4">Kirim Aspirasi Anda</h3>
+              <form onSubmit={handleSubmitAspirasi} className="space-y-4 mb-8">
+                <div>
+                  <Label htmlFor="asp-nama">Nama</Label>
+                  <Input
+                    id="asp-nama"
+                    value={formAspirasi.nama}
+                    onChange={(e) => setFormAspirasi({...formAspirasi, nama: e.target.value})}
+                    placeholder="Nama Lengkap"
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="asp-alamat">Alamat</Label>
+                  <Input
+                    id="asp-alamat"
+                    value={formAspirasi.alamat}
+                    onChange={(e) => setFormAspirasi({...formAspirasi, alamat: e.target.value})}
+                    placeholder="Alamat"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="asp-nomor">Nomor Aspirasi (Otomatis)</Label>
+                  <Input
+                    id="asp-nomor"
+                    value={aspirasiId}
+                    readOnly
+                    className="bg-slate-50 text-slate-500"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="asp-masalah">Isi Aspirasi</Label>
+                  <textarea
+                    id="asp-masalah"
+                    className="flex min-h-[100px] w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
+                    value={formAspirasi.masalah}
+                    onChange={(e) => setFormAspirasi({...formAspirasi, masalah: e.target.value})}
+                    placeholder="Tuliskan aspirasi atau pengaduan Anda di sini..."
+                    required
+                  />
+                </div>
+                <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">Kirim Aspirasi</Button>
+              </form>
+
+              <div className="flex items-center gap-3 mb-6 pt-6 border-t border-slate-100">
                 <Search className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
-                <h2 className="text-[15px] md:text-2xl font-bold text-slate-800">Lacak Status Aspirasi Anda</h2>
+                <h3 className="text-[15px] md:text-xl font-bold text-slate-800">Lacak Status Aspirasi Anda</h3>
               </div>
               <form onSubmit={handleSearchAspirasi} className="flex gap-2">
                 <Input
@@ -196,6 +339,27 @@ export default function LandingPage() {
                   <p className="text-[12px] md:text-sm text-blue-800 font-medium">{searchStatus}</p>
                 </div>
               )}
+
+              {/* Marquee Aspirasi Publik */}
+              <div className="mt-8 pt-6 border-t border-slate-100 overflow-hidden">
+                <h3 className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-wider">Suara Masyarakat</h3>
+                <div className="relative flex overflow-x-hidden group">
+                  <div className="animate-marquee whitespace-nowrap flex items-center gap-4 group-hover:[animation-play-state:paused]">
+                    {[...pengaduan, ...pengaduan, ...pengaduan].map((item, i) => (
+                      <span key={i} className="text-sm text-slate-600 bg-slate-50 px-4 py-2 rounded-full border border-slate-100 shadow-sm shrink-0">
+                        &quot;{item.masalah}&quot;
+                      </span>
+                    ))}
+                  </div>
+                  <div className="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center gap-4 group-hover:[animation-play-state:paused]">
+                    {[...pengaduan, ...pengaduan, ...pengaduan].map((item, i) => (
+                      <span key={`dup-${i}`} className="text-sm text-slate-600 bg-slate-50 px-4 py-2 rounded-full border border-slate-100 shadow-sm shrink-0">
+                        &quot;{item.masalah}&quot;
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </section>
 
             {/* 5. TRANSPARANSI ANGGARAN */}
@@ -242,31 +406,94 @@ export default function LandingPage() {
 
           {/* Right Column */}
           {/* 6. AGENDA PUBLIK */}
-          <section id="agenda-publik" className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 h-full flex flex-col scroll-mt-24">
+          <section id="agenda-publik" className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 h-full flex flex-col scroll-mt-24 overflow-hidden">
              <div className="flex items-center gap-3 mb-6">
                 <Calendar className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
                 <h2 className="text-[15px] md:text-2xl font-bold text-slate-800">Agenda Publik</h2>
               </div>
-              <div className="space-y-4 flex-1">
-                {agenda.slice(0, 4).map((ag) => (
-                  <div key={ag.id} className="p-4 md:p-5 border border-slate-100 rounded-xl hover:border-blue-200 hover:bg-blue-50/50 transition-colors group">
-                    <h3 className="text-[13px] md:text-base font-bold text-slate-800 mb-2 group-hover:text-blue-700 transition-colors">{ag.namaKegiatan}</h3>
-                    <div className="flex flex-col gap-1.5 text-[11px] md:text-sm text-slate-500">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-600/70" />
-                        <span>{ag.tanggalWaktu}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Building2 className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-600/70" />
-                        <span>{ag.lokasi}</span>
-                      </div>
+
+              {agenda.length === 0 ? (
+                 <p className="text-sm text-slate-500 text-center py-8 flex-1">Belum ada agenda publik.</p>
+              ) : (
+                <div className="flex flex-col gap-4 flex-1">
+                  {/* Top Row - Slides Left */}
+                  <div className="relative flex overflow-x-hidden group">
+                    <div className="animate-marquee whitespace-nowrap flex items-center gap-4 group-hover:[animation-play-state:paused]">
+                      {[...topRowAgenda, ...topRowAgenda].map((ag, i) => (
+                        <div key={i} className="p-4 md:p-5 border border-slate-100 rounded-xl hover:border-blue-200 hover:bg-blue-50/50 transition-colors bg-white shrink-0 min-w-[280px]">
+                          <h3 className="text-[13px] md:text-base font-bold text-slate-800 mb-2 whitespace-normal">{ag.namaKegiatan}</h3>
+                          <div className="flex flex-col gap-1.5 text-[11px] md:text-sm text-slate-500 whitespace-normal">
+                            <div className="flex items-center gap-2">
+                              <Calendar className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-600/70" />
+                              <span>{ag.tanggalWaktu}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Building2 className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-600/70" />
+                              <span>{ag.lokasi}</span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center gap-4 group-hover:[animation-play-state:paused]">
+                      {[...topRowAgenda, ...topRowAgenda].map((ag, i) => (
+                        <div key={`dup-${i}`} className="p-4 md:p-5 border border-slate-100 rounded-xl hover:border-blue-200 hover:bg-blue-50/50 transition-colors bg-white shrink-0 min-w-[280px]">
+                          <h3 className="text-[13px] md:text-base font-bold text-slate-800 mb-2 whitespace-normal">{ag.namaKegiatan}</h3>
+                          <div className="flex flex-col gap-1.5 text-[11px] md:text-sm text-slate-500 whitespace-normal">
+                            <div className="flex items-center gap-2">
+                              <Calendar className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-600/70" />
+                              <span>{ag.tanggalWaktu}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Building2 className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-600/70" />
+                              <span>{ag.lokasi}</span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                ))}
-                {agenda.length === 0 && (
-                   <p className="text-sm text-slate-500 text-center py-8">Belum ada agenda publik.</p>
-                )}
-              </div>
+
+                  {/* Bottom Row - Slides Right */}
+                  <div className="relative flex overflow-x-hidden group mt-2">
+                    <div className="animate-marquee-reverse whitespace-nowrap flex items-center gap-4 group-hover:[animation-play-state:paused]">
+                      {[...bottomRowAgenda, ...bottomRowAgenda].map((ag, i) => (
+                        <div key={i} className="p-4 md:p-5 border border-slate-100 rounded-xl hover:border-blue-200 hover:bg-blue-50/50 transition-colors bg-white shrink-0 min-w-[280px]">
+                          <h3 className="text-[13px] md:text-base font-bold text-slate-800 mb-2 whitespace-normal">{ag.namaKegiatan}</h3>
+                          <div className="flex flex-col gap-1.5 text-[11px] md:text-sm text-slate-500 whitespace-normal">
+                            <div className="flex items-center gap-2">
+                              <Calendar className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-600/70" />
+                              <span>{ag.tanggalWaktu}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Building2 className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-600/70" />
+                              <span>{ag.lokasi}</span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="absolute top-0 animate-marquee2-reverse whitespace-nowrap flex items-center gap-4 group-hover:[animation-play-state:paused]">
+                      {[...bottomRowAgenda, ...bottomRowAgenda].map((ag, i) => (
+                        <div key={`dup-${i}`} className="p-4 md:p-5 border border-slate-100 rounded-xl hover:border-blue-200 hover:bg-blue-50/50 transition-colors bg-white shrink-0 min-w-[280px]">
+                          <h3 className="text-[13px] md:text-base font-bold text-slate-800 mb-2 whitespace-normal">{ag.namaKegiatan}</h3>
+                          <div className="flex flex-col gap-1.5 text-[11px] md:text-sm text-slate-500 whitespace-normal">
+                            <div className="flex items-center gap-2">
+                              <Calendar className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-600/70" />
+                              <span>{ag.tanggalWaktu}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Building2 className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-600/70" />
+                              <span>{ag.lokasi}</span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <div className="mt-6 pt-4 border-t border-slate-100 text-center">
                  <Button variant="ghost" className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 text-[12px] md:text-sm font-medium">
                    Lihat Semua Agenda
@@ -278,42 +505,76 @@ export default function LandingPage() {
 
         {/* 7. BERITA & PUBLIKASI */}
         <section className="space-y-6">
-           <div className="flex items-center gap-3">
+           <div className="flex items-center gap-3 mb-6">
               <FileText className="w-6 h-6 text-blue-600" />
               <h2 className="text-2xl font-bold text-slate-800">Berita & Publikasi</h2>
            </div>
-           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {berita.map((item) => (
-                 <div key={item.id} className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-md transition-all flex flex-col">
-                    <div className="relative h-48 bg-slate-100 overflow-hidden">
-                       {item.imageUrl ? (
-                          <Image src={item.imageUrl} alt={item.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+
+           {sortedBerita.length === 0 ? (
+             <div className="text-center py-12 bg-white rounded-xl border border-slate-100">
+                <p className="text-slate-500">Belum ada berita yang dipublikasikan.</p>
+             </div>
+           ) : (
+             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {/* Hero News - Full width */}
+                {heroNews && (
+                  <Link href={`/berita/${heroNews.id}`} className="col-span-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-md transition-all flex flex-col md:flex-row min-h-[300px]">
+                    <div className="relative h-64 md:h-auto md:w-1/2 lg:w-3/5 bg-slate-100 overflow-hidden">
+                       {heroNews.imageUrl ? (
+                          <Image src={heroNews.imageUrl} alt={heroNews.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
                        ) : (
                           <div className="absolute inset-0 flex items-center justify-center text-slate-400">No Image</div>
                        )}
                     </div>
-                    <div className="p-5 flex-1 flex flex-col">
-                       <div className="flex items-center gap-2 text-xs text-slate-500 mb-3">
-                          <Calendar className="w-3.5 h-3.5" />
-                          <span>{item.date}</span>
+                    <div className="p-6 md:p-8 flex-1 flex flex-col justify-center">
+                       <div className="flex items-center gap-2 text-sm text-blue-600 font-medium mb-4">
+                          <Calendar className="w-4 h-4" />
+                          <span>{heroNews.date}</span>
                        </div>
-                       <h3 className="font-bold text-slate-800 text-base mb-2 line-clamp-2 group-hover:text-blue-700 transition-colors">
-                          {item.title}
+                       <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-slate-800 mb-4 group-hover:text-blue-700 transition-colors line-clamp-3">
+                          {heroNews.title}
                        </h3>
-                       <p className="text-sm text-slate-600 line-clamp-3 flex-1">
-                          {item.content}
-                       </p>
-                       <div className="mt-4 pt-4 border-t border-slate-100">
-                          <span className="text-sm font-semibold text-blue-600 group-hover:text-blue-700">Baca Selengkapnya &rarr;</span>
+                       <div className="text-slate-600 line-clamp-3 mb-6 flex-1 text-sm md:text-base" dangerouslySetInnerHTML={{ __html: heroNews.content }} />
+                       <div className="mt-auto">
+                          <span className="inline-flex items-center text-sm font-semibold text-blue-600 group-hover:text-blue-700">
+                            Baca Selengkapnya <span className="ml-2 group-hover:translate-x-1 transition-transform">&rarr;</span>
+                          </span>
                        </div>
                     </div>
-                 </div>
-              ))}
-              {berita.length === 0 && (
-                 <div className="col-span-full text-center py-12 bg-white rounded-xl border border-slate-100">
-                    <p className="text-slate-500">Belum ada berita yang dipublikasikan.</p>
-                 </div>
-              )}
+                  </Link>
+                )}
+
+                {/* Grid News - 2 Columns */}
+                {gridNews.map((item) => (
+                   <Link href={`/berita/${item.id}`} key={item.id} className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-md transition-all flex flex-col">
+                      <div className="relative h-48 bg-slate-100 overflow-hidden">
+                         {item.imageUrl ? (
+                            <Image src={item.imageUrl} alt={item.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                         ) : (
+                            <div className="absolute inset-0 flex items-center justify-center text-slate-400">No Image</div>
+                         )}
+                      </div>
+                      <div className="p-5 flex-1 flex flex-col">
+                         <div className="flex items-center gap-2 text-xs text-slate-500 mb-3">
+                            <Calendar className="w-3.5 h-3.5" />
+                            <span>{item.date}</span>
+                         </div>
+                         <h3 className="font-bold text-slate-800 text-base mb-2 line-clamp-2 group-hover:text-blue-700 transition-colors">
+                            {item.title}
+                         </h3>
+                         <div className="text-sm text-slate-600 line-clamp-3 flex-1 mb-4" dangerouslySetInnerHTML={{ __html: item.content }} />
+                         <div className="mt-auto pt-4 border-t border-slate-100">
+                            <span className="text-sm font-semibold text-blue-600 group-hover:text-blue-700">Baca Selengkapnya &rarr;</span>
+                         </div>
+                      </div>
+                   </Link>
+                ))}
+             </div>
+           )}
+           <div className="text-center pt-8">
+              <Button variant="outline" className="border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-800 font-medium px-8 h-12">
+                Lihat lainnya...
+              </Button>
            </div>
         </section>
 
