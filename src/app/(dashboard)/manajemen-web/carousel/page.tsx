@@ -40,6 +40,36 @@ export default function CarouselManagementPage() {
     resetForm();
   };
 
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+    const file = e.target.files[0];
+
+    setIsUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        setImageUrl(data.url);
+      } else {
+        alert(data.error || 'Failed to upload file');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Error uploading file');
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
   const handleEdit = (slide: CarouselSlide) => {
     setCurrentSlide(slide);
     setImageUrl(slide.imageUrl);
@@ -83,14 +113,22 @@ export default function CarouselManagementPage() {
             </DialogHeader>
             <form onSubmit={handleAdd} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="imageUrl">URL Gambar</Label>
+                <Label htmlFor="imageUpload">Upload Gambar</Label>
                 <Input
-                  id="imageUrl"
-                  value={imageUrl}
-                  onChange={(e) => setImageUrl(e.target.value)}
-                  placeholder="https://example.com/image.jpg"
-                  required
+                  id="imageUpload"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                  disabled={isUploading}
                 />
+                {isUploading && <p className="text-xs text-blue-500">Mengunggah...</p>}
+                {imageUrl && (
+                  <div className="mt-2 text-xs text-green-600 break-all">
+                    Gambar tersimpan: {imageUrl}
+                  </div>
+                )}
+                {/* Keep hidden input for form validity if needed or remove required */}
+                <input type="hidden" value={imageUrl} required />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="textLine1">Teks Baris 1 (Judul)</Label>
@@ -155,14 +193,21 @@ export default function CarouselManagementPage() {
           </DialogHeader>
           <form onSubmit={handleUpdate} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="edit-imageUrl">URL Gambar</Label>
+              <Label htmlFor="edit-imageUpload">Upload Gambar Baru</Label>
               <Input
-                id="edit-imageUrl"
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
-                placeholder="https://example.com/image.jpg"
-                required
+                id="edit-imageUpload"
+                type="file"
+                accept="image/*"
+                onChange={handleFileUpload}
+                disabled={isUploading}
               />
+              {isUploading && <p className="text-xs text-blue-500">Mengunggah...</p>}
+              {imageUrl && (
+                <div className="mt-2 text-xs text-green-600 break-all">
+                  Gambar tersimpan: {imageUrl}
+                </div>
+              )}
+              <input type="hidden" value={imageUrl} required />
             </div>
             <div className="space-y-2">
               <Label htmlFor="edit-textLine1">Teks Baris 1 (Judul)</Label>
